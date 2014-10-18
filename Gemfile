@@ -18,6 +18,8 @@ gem 'rake'
 gem "activemodel", "~> 4.0.0"
 gem 'mongoid'
 
+gem 'thin'
+
 # Test requirements
 
 # Padrino Stable Gem
