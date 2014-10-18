@@ -1,0 +1,14 @@
+.DS_Store
+log/**/*
+tmp/**/*
+vendor/gems/*
+!vendor/gems/cache/
+.sass-cache/*
+db/*.db
+.*.sw*
+public/
+frontend/node_modules
+frontend/dist
+frontend/.tmp
+frontend/.sass-cache
+frontend/bower_components
