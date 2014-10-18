@@ -8,7 +8,7 @@ Gamegit::Api.controller :payload do
     payload_body = request.body.read
     verify_signature(payload_body)
 
-    event = Event.build_from_payload(request.headers, payload_body)
+    event = Event.build_from_payload(request.env, payload_body)
 
     if event.save
       {success: true }.to_json

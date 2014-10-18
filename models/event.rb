@@ -7,7 +7,7 @@ class Event
   field :data, type: Hash
   field :processed, type: Boolean, default: false
 
-  validates_presence_of :type, :delivery
+  validates_presence_of :type, :delivery_id
 
   attr_accessible :delivery_id
 
@@ -21,7 +21,7 @@ class Event
     return event
   end
 
-  def self.find_by_delivery_id(delivery_id)
+  def self.find_or_build_by_delivery_id(delivery_id)
     Event.where(delivery_id: delivery_id).first || Event.new(delivery_id: delivery_id)
   end
 end
