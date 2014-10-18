@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'uri'
+
+mongouri = `heroku config:get MONGO_URI`
+uri = URI.parse(mongouri)
+
+cmd = "mongodump -h #{uri.host} -d #{uri.path[1..-1]} --port #{uri.port} -u '#{uri.user}' -p '#{uri.password}' --out tmp/"
+system cmd
