@@ -1,39 +1,28 @@
 Gamegit::App.controller :payload do
+  before do
+    content_type :json
+  end
 
   helpers do
     def verify_signature(payload_body)
       signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), ENV['GAMEGIT_SECRET_TOKEN'], payload_body)
-      return halt 500, "Signatures didn't match!" unless Rack::Utils.secure_compare(signature, request.env['HTTP_X_HUB_SIGNATURE'])
+      return halt 500, {error: "Signatures didn't match!"}.to_json unless Rack::Utils.secure_compare(signature, request.env['HTTP_X_HUB_SIGNATURE'])
     end
   end
 
-  post "/" do
+  post "/github" do
     request.body.rewind
     payload_body = request.body.read
     verify_signature(payload_body)
 
+    Padrino.logger.info "Received github event: #{payload_body.inspect}"
     event = Event.new
     event.data = params
-    event.save
+
+    if event.save
+      {success: true }.to_json
+    else
+      halt 403, {success: false}.to_json
+    end
   end
-
-  # get :index, :map => '/foo/bar' do
-  #   session[:foo] = 'bar'
-  #   render 'index'
-  # end
-
-  # get :sample, :map => '/sample/url', :provides => [:any, :js] do
-  #   case content_type
-  #     when :js then ...
-  #     else ...
-  # end
-
-  # get :foo, :with => :id do
-  #   'Maps to url '/foo/#{params[:id]}''
-  # end
-
-  # get '/example' do
-  #   'Hello world!'
-  # end
-
 end
