@@ -10,5 +10,16 @@ class Stats
   field :commits, type: Integer, default: 0
   field :opened_pull_requests, type: Integer, default: 0
   field :closed_pull_requests, type: Integer, default: 0
+
+  attr_accessible :period
+
+  def self.current_stats
+    code = DateTime.now.strftime("%m%Y")
+    stats = Stats.where(period: code).first
+    unless stats
+      stats = Stats.new(period: code)
+    end
+    stats
+  end
 end
 
