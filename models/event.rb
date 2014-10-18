@@ -2,6 +2,11 @@ class Event
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  POINTS = {
+    push:  1,
+    issues: 1
+  }
+
   field :type, type: String
   field :delivery_id, type: String
   field :data, type: Hash
