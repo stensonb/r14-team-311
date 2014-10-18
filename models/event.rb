@@ -44,7 +44,6 @@ class Event
   private
   def assign_user
     key = "sender"
-    key = "user" if self.type == "push"
 
     self.user = User.find_or_build_from_json(self.data[key])
   end
