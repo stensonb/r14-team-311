@@ -15,9 +15,11 @@ Gamegit::Api.controller :payload do
     payload_body = request.body.read
     verify_signature(payload_body)
 
-    Padrino.logger.info "Received github event: #{payload_body.inspect}"
+    payload_json = JSON.parse(payload_body)
+
+    Padrino.logger.info "Received github event: #{payload_json.inspect}"
     event = Event.new
-    event.data = params
+    event.data = payload_json
 
     if event.save
       {success: true }.to_json
