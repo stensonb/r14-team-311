@@ -27,7 +27,7 @@
   <div class="col-md-4" ng-controller="RankingCtrl">
     <div class="panel widget">
       <div class="half-float">
-        <img src="images/bg3.jpg" alt="" class="img-responsive">
+        <img src="http://lorempixel.com/1024/268" alt="" class="img-responsive">
         <div class="half-float-bottom">
            <img src="images/user/09.jpg" alt="Image" class="img-thumbnail img-circle thumb128">
         </div>
@@ -72,58 +72,52 @@
   </div>
 
   <div class="col-md-4" ng-controller="LiveStreamCtrl">
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
       <div class="panel-heading">Live stream</div>
       <div class="panel-body">
         <ul class="media-list">
-          <li class="media">
+          <li class="media" ng-repeat="event in events">
             <a class="pull-left" href="#">
-              <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+" style="width: 32px; height: 32px;">
+              <img class="media-object" alt="64x64" ng-src="{{event.data.sender.avatar_url}}" style="width: 32px; height: 32px;">
             </a>
             <div class="media-body">
               <span class="label label-info pull-right">just now</span>
-              <h4 class="media-heading">Ted Berry</h4>
-              <p>pushed 24 commits</p>
-              <!-- Nested media object -->
-              <div class="media">
-                <a class="pull-left" href="#">
-                  <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+" style="width: 32px; height: 32px;">
-                </a>
-                <div class="media-body">
-                  <span class="label label-info pull-right">just now</span>
-                  <h4 class="media-heading">Ted Berry</h4>
-                  committed "fix this thing"
-                </div>
-              </div>
-
-
-              <!-- Nested media object -->
-              <div class="media">
-                <a class="pull-left" href="#">
-                  <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+" style="width: 32px; height: 32px;">
-                </a>
-                <div class="media-body">
-                  <span class="label label-info pull-right">4 minutes ago</span>
-                  <h4 class="media-heading">Sylvia Morris</h4>
-                  committed "Move this around"
-                </div>
-              </div>
-            </div>
-          </li>
-
-          <li class="media">
-            <a class="pull-left" href="#">
-              <img class="media-object" data-src="holder.js/32x32" alt="32x32" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+" style="width: 32px; height: 32px;">
-            </a>
-            <div class="media-body">
-              <span class="label label-info pull-right">23 minutes ago</span>
-              <h4 class="media-heading">Ted Berry</h4>
-              <p>pushed 24 commits</p>
+              <h4 class="media-heading">{{event.data.sender.login}}</h4>
+              <div ng-include="event.type+'_event.html'">
             </div>
           </li>
         </ul>
-
       </div>
     </div>
   </div>
 </div>
+
+<script type="text/ng-template" id="push_event.html">
+  <p>pushed {{event.data.commits.length}} commits</p>
+  <!-- Nested media object -->
+  <div class="media" ng-repeat="commit in event.data.commits">
+    <a class="pull-left" href="#">
+      <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="" style="width: 32px; height: 32px;">
+    </a>
+    <div class="media-body">
+      <span class="label label-info pull-right">just now</span>
+      <h4 class="media-heading">{{commit.committer.username}}</h4>
+      committed "{{commit.message}}"
+    </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="issues_event.html">
+  <p><strong>{{event.data.action}}</strong> the issue "{{event.data.issue.title}}" </p>
+  <!-- Nested media object -->
+  <div class="media" ng-repeat="commit in event.data.commits">
+    <a class="pull-left" href="#">
+      <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="" style="width: 32px; height: 32px;">
+    </a>
+    <div class="media-body">
+      <span class="label label-info pull-right">just now</span>
+      <h4 class="media-heading">{{commit.committer.username}}</h4>
+      committed "{{commit.message}}"
+    </div>
+  </div>
+</script>

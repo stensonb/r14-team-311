@@ -8,10 +8,11 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('LiveStreamCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('LiveStreamCtrl', function ($scope, $timeout, Restangular) {
+    (function tick() {
+      Restangular.all('events').getList().then(function(events) {
+        $scope.events = events;
+        $timeout(tick, 1000);
+      });
+    })();
   });
