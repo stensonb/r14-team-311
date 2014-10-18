@@ -61,5 +61,9 @@ module Gamegit
     #     render 'errors/500'
     #   end
     #
+
+    get '/' do
+        send_file 'public/index.html'
+    end
   end
 end

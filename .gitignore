@@ -6,7 +6,6 @@ vendor/gems/*
 .sass-cache/*
 db/*.db
 .*.sw*
-public/
 frontend/node_modules
 frontend/dist
 frontend/.tmp
