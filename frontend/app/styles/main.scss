@@ -3,5 +3,30 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+body {
+  background-color: #f5f7fa;
+}
 
+.widget {
+  margin-bottom: 20px;
+  border: 0;
+}
+
+.widget.panel {
+  overflow: hidden;
+}
+
+.bg-primary {
+  background-color: #5d9cec;
+  color: #fff!important;
+}
+
+.bg-inverse {
+  background-color: #131e26;
+  color: #fff!important;
+}
+
+.mt0 {
+  margin-top: 0!important;
+}
 
