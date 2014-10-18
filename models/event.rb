@@ -11,6 +11,8 @@ class Event
 
   attr_accessible :delivery_id
 
+  scope :events_to_process, ->{ where(processed: false) }
+
   def self.build_from_payload(headers, payload_body)
     event = self.find_or_build_by_delivery_id(headers["HTTP_X_GITHUB_DELIVERY"])
     event.type = headers["HTTP_X_GITHUB_EVENT"]
@@ -24,4 +26,6 @@ class Event
   def self.find_or_build_by_delivery_id(delivery_id)
     Event.where(delivery_id: delivery_id).first || Event.new(delivery_id: delivery_id)
   end
+
 end
+
