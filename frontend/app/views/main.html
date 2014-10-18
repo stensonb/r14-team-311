@@ -2,7 +2,7 @@
   <div class="col-md-4" ng-controller="StatsCtrl">
     <div class="panel widget">
       <div class="panel-body bg-primary">
-        <div class="h5 mt0">Monthly incomes</div>
+        <div class="h5 mt0">Monthly Points</div>
         <!-- Line chart-->
         <div sparkline="" data-type="line" data-height="80" data-width="100%" data-line-width="2" data-line-color="#dddddd" data-spot-color="#bbbbbb" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="3" data-resize="true">5,9,4,1,3,4,7,5</div>
       </div>
@@ -21,37 +21,103 @@
             </div>
         </div>
       </div>
-
-      <div class="panel-body">
-        <div class="row row-table text-center">
-          <div class="col-xs-6">
-            <p class="m0 text-muted">Gross income</p>
-            <h4 class="m0">12000</h4>
-          </div>
-          <div class="col-xs-6">
-            <p class="m0 text-muted">Net income</p>
-            <h4 class="m0">5100</h4>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
   <div class="col-md-4" ng-controller="RankingCtrl">
-    <div class="panel panel-default">
-      <div class="panel-heading">Ranking</div>
-      <div class="panel-body">
-        Panel content
+    <div class="panel widget">
+      <div class="half-float">
+        <img src="http://lorempixel.com/1024/268" alt="" class="img-responsive">
+        <div class="half-float-bottom">
+           <img src="images/user/09.jpg" alt="Image" class="img-thumbnail img-circle thumb128">
+        </div>
+      </div>
+      <div class="panel-body text-center">
+        <h3 class="m0">Ted Berry</h3>
+      </div>
+      <div class="panel-body text-center bg-gray-dark">
+        <div class="row row-table">
+          <div class="col-xs-4">
+            <h3 class="m0">400</h3>
+            <p class="m0">Points</p>
+          </div>
+          <div class="col-xs-4">
+            <h3 class="m0">100</h3>
+            <p class="m0">Commits</p>
+          </div>
+          <div class="col-xs-4">
+            <h3 class="m0">10</h3>
+            <p class="m0">Push</p>
+          </div>
+        </div>
+      </div>
+      <div class="list-group">
+        <a href="#" class="list-group-item">
+          <span class="label label-primary pull-right">15</span>
+          <em class="fa fa-fw fa-clock-o text-muted"></em>
+          Peggy Peters
+        </a>
+        <a href="#" class="list-group-item">
+          <span class="label label-primary pull-right">100</span>
+          <em class="fa fa-fw fa-user text-muted"></em>
+          Sylvia Morris
+        </a>
+        <a href="#" class="list-group-item">
+          <span class="label label-primary pull-right">300</span>
+          <em class="fa fa-fw fa-folder-open-o text-muted"></em>
+          Sarah Pierce
+        </a>
       </div>
     </div>
   </div>
 
   <div class="col-md-4" ng-controller="LiveStreamCtrl">
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
       <div class="panel-heading">Live stream</div>
       <div class="panel-body">
-        Panel content
+        <ul class="media-list">
+          <li class="media" ng-repeat="event in events">
+            <a class="pull-left" href="#">
+              <img class="media-object" alt="64x64" ng-src="{{event.data.sender.avatar_url}}" style="width: 32px; height: 32px;">
+            </a>
+            <div class="media-body">
+              <span class="label label-info pull-right">just now</span>
+              <h4 class="media-heading">{{event.data.sender.login}}</h4>
+              <div ng-include="event.type+'_event.html'">
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 </div>
+
+<script type="text/ng-template" id="push_event.html">
+  <p>pushed {{event.data.commits.length}} commits</p>
+  <!-- Nested media object -->
+  <div class="media" ng-repeat="commit in event.data.commits">
+    <a class="pull-left" href="#">
+      <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="" style="width: 32px; height: 32px;">
+    </a>
+    <div class="media-body">
+      <span class="label label-info pull-right">just now</span>
+      <h4 class="media-heading">{{commit.committer.username}}</h4>
+      committed "{{commit.message}}"
+    </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="issues_event.html">
+  <p><strong>{{event.data.action}}</strong> the issue "{{event.data.issue.title}}" </p>
+  <!-- Nested media object -->
+  <div class="media" ng-repeat="commit in event.data.commits">
+    <a class="pull-left" href="#">
+      <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="" style="width: 32px; height: 32px;">
+    </a>
+    <div class="media-body">
+      <span class="label label-info pull-right">just now</span>
+      <h4 class="media-heading">{{commit.committer.username}}</h4>
+      committed "{{commit.message}}"
+    </div>
+  </div>
+</script>
