@@ -1,0 +1,195 @@
+#!/usr/bin/env ruby
+
+
+####
+#
+#
+
+require 'yaml'
+require 'fileutils'
+%w[flog colorize].each do |g|
+  begin
+    require g
+  rescue LoadError
+    puts "Type: gem install flog colorize"
+    exit -1
+  end
+end
+
+class CodeAnalyser
+  CACHE_DIR = "#{Dir.home}/.code_analyser/"
+
+  def initialize(options = {})
+    FileUtils.mkpath(CACHE_DIR)
+    install_git_hook
+
+    @options = options
+  end
+
+  def run(files)
+    files.each do |file|
+      analyze(file)
+    end
+  end
+
+  def install_git_hook
+    hook_path = "#{find_git_dir}/hooks/prepare-commit-msg"
+    if !File.exist?(hook_path)
+      FileUtils.ln_sf(File.expand_path(__FILE__), hook_path)
+    end
+  end
+
+  private
+  def get_tag_for_value(value, previous)
+    tag = case value
+    when 0..10
+      "Awesome"
+    when 10..20
+      "Good enough"
+    when 20..40
+      "Might need refactoring"
+    when 40..60
+      "Needs refactoring"
+    when 60..100
+      "Danger"
+    when 100..200
+      "Whoop, whoop, whoop"
+    else
+      "Get another job"
+    end
+
+    "#{compared_with_previous_value(value, previous)} #{tag}"
+  end
+
+  def tag_results(method, value, previous_results)
+    current_value = value
+    previous_value = (previous_results[method] || current_value)
+    tag = get_tag_for_value(value, previous_value)
+    "[#{tag}: #{current_value.round(2)} previous:#{previous_value.round(2)}]"
+  end
+
+  def get_color_for_value(value)
+    case value
+    when 0..20
+      :green
+    when 20..40
+      :yellow
+    else
+      :red
+    end
+  end
+
+  def log(msg, color)
+    File.open("#{find_git_dir}/COMMIT_EDITMSG", "a") do |f|
+      f.puts "# #{msg}"
+    end
+    puts msg.colorize(color)
+  end
+
+  def compared_with_previous_value(current, previous)
+    variation = format_number_with_sign((previous - current).round(2))
+    if current > previous
+      "WORSE #{variation}"
+    elsif current < previous
+      "BETTER #{variation}"
+    else
+      "UNCHANGED"
+    end
+  end
+
+  def print_totals(flog, previous_results)
+    flog.totals.each do |method, value|
+      print_method(flog, method, value, previous_results)
+
+      if value > 20
+        print_details(flog, method, value)
+      end
+
+      sleep 5 if value > 30
+    end
+  end
+
+  def print_method(flog, method, value, previous_results)
+    color = get_color_for_value(value)
+    location = flog.method_locations[method]
+
+    log "#{tag_results(method, value, previous_results)} #{method} -- #{location}", color
+  end
+
+  def print_details(flog, method, value)
+    flog.calls[method].each do |statement, value|
+      log "\t#{statement}: #{value.round(2)}", :normal
+    end
+  end
+
+  def save_results(flog, file_path)
+    File.write(find_file_path(file_path), flog.totals.to_yaml)
+  end
+
+  def find_file_path(path)
+    File.join(CACHE_DIR, path.gsub("/", "_"))
+  end
+
+  def load_results(file_path)
+    YAML.load_file(find_file_path(file_path)) rescue {}
+  end
+
+  def analyze(file_path)
+    return if file_path =~ /spec\//
+
+    flog = Flog.new(:continue => true, :quiet => true, :details => true)
+    flog.flog(file_path)
+
+    previous_results = load_results(file_path)
+    print_totals(flog, previous_results)
+    save_results(flog, file_path)
+
+    if flog.average > 20
+      log "!!!! Average of #{file_path} is too high: #{flog.average}", :red
+    end
+  end
+
+  def find_git_dir
+    return @git_dir if @git_dir
+    current_dir = File.expand_path(File.join(__FILE__, "../"))
+    5.times do
+      git_dir = File.join(current_dir, ".git")
+      if File.directory?(git_dir)
+        @git_dir = File.expand_path(git_dir)
+        return @git_dir
+      end
+
+      current_dir = File.join(current_dir, "..")
+
+      break unless File.exist?(current_dir)
+    end
+
+    raise ArgumentError, "Git dir not found" if @git_dir.nil?
+  end
+
+  def format_number_with_sign(number)
+    if number > 0
+      "+#{number.round(2)}"
+    else
+      number.round(2).inspect
+    end
+  end
+
+  def self.find_files
+    files = `git diff --cached --name-only`.split
+    if !$0.include?(".git/hooks") # not running from hook
+      files += `git diff --name-only`.split
+    end
+
+    return files.uniq
+  end
+end
+
+files = ARGV.select {|a| not File.expand_path(a).include?(".git") }
+if files.empty?
+  files = CodeAnalyser.find_files
+end
+
+analyser = CodeAnalyser.new
+analyser.run(files)
+
