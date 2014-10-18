@@ -7,7 +7,11 @@ class Event
   field :data, type: Hash
   field :processed, type: Boolean, default: false
 
+  belongs_to :user
+
   validates_presence_of :type, :delivery_id
+
+  before_create :fill_data
 
   attr_accessible :delivery_id
 
@@ -27,5 +31,8 @@ class Event
     Event.where(delivery_id: delivery_id).first || Event.new(delivery_id: delivery_id)
   end
 
+  def fill_data
+    self.user = User.find_or_build_from_json(self.data["user"])
+  end
 end
 
