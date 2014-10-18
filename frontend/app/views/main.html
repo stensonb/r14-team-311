@@ -1,23 +1,56 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
+<div class="row">
+  <div class="col-md-4" ng-controller="StatsCtrl">
+    <div class="panel widget">
+      <div class="panel-body bg-primary">
+        <div class="h5 mt0">Monthly incomes</div>
+        <!-- Line chart-->
+        <div sparkline="" data-type="line" data-height="80" data-width="100%" data-line-width="2" data-line-color="#dddddd" data-spot-color="#bbbbbb" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="3" data-resize="true"><canvas width="302" height="80" style="display: inline-block; vertical-align: top; width: 302px; height: 80px;"></canvas></div>
+      </div>
+      <div class="panel-body bg-inverse">
+        <div class="row text-center">
+            <div class="col-xs-6">
+              <!-- Bar chart-->
+              <div sparkline="" data-bar-color="#5d9cec" data-height="30" data-bar-width="6" data-bar-spacing="6"><canvas width="150" height="30" style="display: inline-block; vertical-align: top; width: 150px; height: 30px;"></canvas></div>
+            </div>
+            <div class="col-xs-6">
+              <h4 class="m0">+150</h4>
+              <p class="m0 text-muted">
+                 <small>From last month</small>
+              </p>
+            </div>
+        </div>
+      </div>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+      <div class="panel-body">
+        <div class="row row-table text-center">
+          <div class="col-xs-6">
+            <p class="m0 text-muted">Gross income</p>
+            <h4 class="m0">12000</h4>
+          </div>
+          <div class="col-xs-6">
+            <p class="m0 text-muted">Net income</p>
+            <h4 class="m0">5100</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
+  <div class="col-md-4" ng-controller="RankingCtrl">
+    <div class="panel panel-default">
+      <div class="panel-heading">Ranking</div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+  </div>
 
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+  <div class="col-md-4" ng-controller="LiveStreamCtrl">
+    <div class="panel panel-default">
+      <div class="panel-heading">Live stream</div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+  </div>
 </div>
