@@ -1,4 +1,4 @@
-module Gamegitication
+module Gamegit
   class Api < Padrino::Application
     register Padrino::Mailer
     register Padrino::Helpers

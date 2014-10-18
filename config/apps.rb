@@ -29,8 +29,9 @@ Padrino.configure_apps do
   # enable :sessions
   set :session_secret, '51148a12f8bc27e097106dba72c8744f8efd3aa400831545255435fd373ca15b'
   set :protection, :except => :path_traversal
-  set :protect_from_csrf, true
+  set :protect_from_csrf, false
 end
 
 # Mounts the core application for this project
 Padrino.mount('Gamegit::App', :app_file => Padrino.root('app/app.rb')).to('/')
+Padrino.mount('Gamegit::Api', :app_file => Padrino.root('api/app.rb')).to('/')
