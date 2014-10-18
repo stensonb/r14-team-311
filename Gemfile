@@ -17,6 +17,7 @@ gem 'rake'
 # Component requirements
 gem "activemodel", "~> 4.0.0"
 gem 'mongoid'
+gem 'rack-parser', require: 'rack/parser'
 
 gem 'thin'
 
@@ -32,3 +33,4 @@ gem 'padrino', '0.12.3'
 # %w(core support gen helpers cache mailer admin).each do |g|
 #   gem 'padrino-' + g, '0.12.3'
 # end
+
