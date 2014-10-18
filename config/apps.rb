@@ -35,3 +35,6 @@ end
 # Mounts the core application for this project
 Padrino.mount('Gamegit::Api', :app_file => Padrino.root('api/app.rb')).to('/api')
 Padrino.mount('Gamegit::App', :app_file => Padrino.root('app/app.rb')).to('/')
+
+Padrino::Application.use Rack::Parser
+
