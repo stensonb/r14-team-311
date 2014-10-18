@@ -35,6 +35,7 @@ Padrino::Logger::Config[:production][:stream] = :stdout
 # Add your before (RE)load hooks here
 #
 Padrino.before_load do
+  Mongoid::Document.send(:include, ActiveModel::MassAssignmentSecurity)
 end
 
 ##
