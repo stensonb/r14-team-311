@@ -40,6 +40,8 @@ class Event
   end
 
   def cache_user_data
+    return if self.user.nil?
+
     self.user_data = {
       avatar_url: self.user.avatar_url,
       url: self.user.url,
