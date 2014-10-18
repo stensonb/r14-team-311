@@ -7,6 +7,7 @@ source 'https://rubygems.org'
 # gem 'thin' # or mongrel
 # gem 'trinidad', :platform => 'jruby'
 
+
 # Optional JSON codec (faster performance)
 gem 'oj'
 
@@ -15,7 +16,7 @@ gem 'rake'
 
 # Component requirements
 gem "activemodel", "~> 4.0.0"
-gem "moped", '~> 2.0.0'
+gem 'mongoid'
 
 # Test requirements
 

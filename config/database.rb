@@ -4,9 +4,9 @@ host = 'localhost'
 port = 27017
 
 database_name = case Padrino.env
-  when :development then 'logger_development'
-  when :production  then 'logger_production'
-  when :test        then 'logger_test'
+  when :development then 'gamegit_development'
+  when :production  then 'gamegit_production'
+  when :test        then 'gamegit_test'
 end
 
 # Use MONGO_URI if it's set as an environmental variable.
