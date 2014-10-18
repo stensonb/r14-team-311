@@ -4,7 +4,9 @@ class Event
 
   POINTS = {
     push:  1,
-    issues: 1
+    issues: 1,
+    create: 1,
+    pull_request: 1
   }
 
   field :type, type: String

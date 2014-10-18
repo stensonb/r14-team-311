@@ -35,5 +35,17 @@ class EventProcessor
     event.user.set(points + Event::POINTS[:issues])
   end
 
+  def process_create_event(event)
+    # TODO: Process event specific content action
+    points = event.user.points
+    event.user.set(points + Event::POINTS[:create])
+  end
+
+  def process_pull_request_event(event)
+    # TODO: Process event specific content action
+    points = event.user.points
+    event.user.set(points + Event::POINTS[:pull_request])
+  end
+
 end
 
