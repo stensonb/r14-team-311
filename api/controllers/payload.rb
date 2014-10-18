@@ -3,23 +3,12 @@ Gamegit::Api.controller :payload do
     content_type :json
   end
 
-  helpers do
-    def verify_signature(payload_body)
-      signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), ENV['GAMEGIT_SECRET_TOKEN'].to_s, payload_body)
-      return halt 500, {error: "Signatures didn't match!"}.to_json unless Rack::Utils.secure_compare(signature, request.env['HTTP_X_HUB_SIGNATURE'].to_s)
-    end
-  end
-
   post :create, map: "/github" do
     request.body.rewind
     payload_body = request.body.read
     verify_signature(payload_body)
 
-    payload_json = JSON.parse(payload_body)
-
-    Padrino.logger.info "Received github event: #{payload_json.inspect}"
-    event = Event.new
-    event.data = payload_json
+    event = Event.build_from_payload(request.headers, payload_body)
 
     if event.save
       {success: true }.to_json

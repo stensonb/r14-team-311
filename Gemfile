@@ -20,6 +20,7 @@ gem 'mongoid'
 gem 'rack-parser', require: 'rack/parser'
 
 gem 'thin'
+gem 'protected_attributes'
 
 # Test requirements
 
