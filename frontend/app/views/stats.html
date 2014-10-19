@@ -1,18 +1,18 @@
 <div ng-controller="StatsCtrl">
   <div class="panel widget">
     <div class="panel-body bg-primary">
-      <div class="h5 mt0">Monthly Points</div>
+      <div class="h5 mt0">Monthly {{getLabel(cStat)}}</div>
       <!-- Line chart-->
-      <div sparkline="stats.points" data-type="line" data-height="80" data-width="100%" data-line-width="2" data-line-color="#dddddd" data-spot-color="#bbbbbb" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="3" data-resize="true"></div>
+      <div sparkline="extractData(cStat)" data-type="line" data-height="80" data-width="100%" data-line-width="2" data-line-color="#dddddd" data-spot-color="#bbbbbb" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="3" data-resize="true"></div>
     </div>
     <div class="panel-body bg-inverse">
       <div class="row text-center">
           <div class="col-xs-6">
             <!-- Bar chart-->
-            <div sparkline="stats.points" data-bar-color="#5d9cec" data-height="30" data-bar-width="6" data-bar-spacing="6"></div>
+            <div sparkline="extractData(cStat)" data-bar-color="#5d9cec" data-height="30" data-bar-width="6" data-bar-spacing="6"></div>
           </div>
           <div class="col-xs-6">
-            <h4 class="m0">+150</h4>
+            <h4 class="m0">{{getDelta(cStat)}}</h4>
             <p class="m0 text-muted">
                <small>From last month</small>
             </p>
@@ -20,72 +20,66 @@
       </div>
     </div>
   </div>
-</div>
 
-<div class="panel widget">
-  <div class="panel-body bg-primary">
-    <div class="h5 mt0">Monthly Commits</div>
-    <!-- Line chart-->
-    <div sparkline="stats.commits" data-type="line" data-height="80" data-width="100%" data-line-width="2" data-line-color="#dddddd" data-spot-color="#bbbbbb" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="3" data-resize="true"></div>
-  </div>
-  <div class="panel-body bg-inverse">
-    <div class="row text-center">
-        <div class="col-xs-6">
-          <!-- Bar chart-->
-          <div sparkline="stats.commits" data-bar-color="#5d9cec" data-height="30" data-bar-width="6" data-bar-spacing="6"></div>
+  <div class="panel widget">
+    <div class="row row-table row-flush">
+      <div class="col-xs-6 stats-box"
+        ng-repeat="key in ['points', 'commits', 'pushes']"
+        ng-class="{active: (isActive(key))}"
+        ng-click="changeCstat(key)">
+        <div class="row row-table row-flush">
+          <div class="col-xs-4 text-center text-info">
+            <!-- Bar chart-->
+            <div sparkline="extractData(key)" data-bar-color="#5d9cec" data-height="20" data-bar-width="3" data-bar-spacing="2"></div>
+          </div>
+          <div class="col-xs-8">
+            <div class="panel-body text-center">
+              <h4 class="mt0">{{current[key]}}</h4>
+              <p class="mb0 text-muted">{{getLabel(key)}}</p>
+            </div>
+          </div>
         </div>
-        <div class="col-xs-6">
-          <h4 class="m0">+150</h4>
-          <p class="m0 text-muted">
-             <small>From last month</small>
-          </p>
-        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-
-<div class="panel widget">
-  <div class="panel-body bg-primary">
-    <div class="h5 mt0">Monthly opened pull request</div>
-    <!-- Line chart-->
-    <div sparkline="stats.opened_pull_request" data-type="line" data-height="80" data-width="100%" data-line-width="2" data-line-color="#dddddd" data-spot-color="#bbbbbb" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="3" data-resize="true"></div>
-  </div>
-  <div class="panel-body bg-inverse">
-    <div class="row text-center">
-        <div class="col-xs-6">
-          <!-- Bar chart-->
-          <div sparkline="stats.opened_pull_request" data-bar-color="#5d9cec" data-height="30" data-bar-width="6" data-bar-spacing="6"></div>
+    <div class="row row-table row-flush">
+      <div class="col-xs-6 stats-box"
+        ng-repeat="key in ['opened_issues', 'assigned_issues', 'closed_issues']"
+        ng-class="{active: (isActive(key))}"
+        ng-click="changeCstat(key)">
+        <div class="row row-table row-flush">
+          <div class="col-xs-4 text-center text-info">
+            <!-- Bar chart-->
+            <div sparkline="extractData(key)" data-bar-color="#5d9cec" data-height="20" data-bar-width="3" data-bar-spacing="2"></div>
+          </div>
+          <div class="col-xs-8">
+            <div class="panel-body text-center">
+              <h4 class="mt0">{{current[key]}}</h4>
+              <p class="mb0 text-muted">{{getLabel(key)}}</p>
+            </div>
+          </div>
         </div>
-        <div class="col-xs-6">
-          <h4 class="m0">+150</h4>
-          <p class="m0 text-muted">
-             <small>From last month</small>
-          </p>
-        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-
-<div class="panel widget">
-  <div class="panel-body bg-primary">
-    <div class="h5 mt0">Monthly closed pull request</div>
-    <!-- Line chart-->
-    <div sparkline="stats.closed_pull_request" data-type="line" data-height="80" data-width="100%" data-line-width="2" data-line-color="#dddddd" data-spot-color="#bbbbbb" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="3" data-resize="true"></div>
-  </div>
-  <div class="panel-body bg-inverse">
-    <div class="row text-center">
-        <div class="col-xs-6">
-          <!-- Bar chart-->
-          <div sparkline="stats.closed_pull_request" data-bar-color="#5d9cec" data-height="30" data-bar-width="6" data-bar-spacing="6"></div>
+    <div class="row row-table row-flush">
+      <div class="col-xs-6 stats-box"
+        ng-repeat="key in ['opened_pull_request', 'closed_pull_request', 'collaborators']"
+        ng-class="{active: (isActive(key))}"
+        ng-click="changeCstat(key)">
+        <div class="row row-table row-flush">
+          <div class="col-xs-4 text-center text-info">
+            <!-- Bar chart-->
+            <div sparkline="extractData(key)" data-bar-color="#5d9cec" data-height="20" data-bar-width="3" data-bar-spacing="2"></div>
+          </div>
+          <div class="col-xs-8">
+            <div class="panel-body text-center">
+              <h4 class="mt0">{{current[key]}}</h4>
+              <p class="mb0 text-muted">{{getLabel(key)}}</p>
+            </div>
+          </div>
         </div>
-        <div class="col-xs-6">
-          <h4 class="m0">+150</h4>
-          <p class="m0 text-muted">
-             <small>From last month</small>
-          </p>
-        </div>
+      </div>
     </div>
   </div>
 </div>
