@@ -8,7 +8,10 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $modal, $cookies) {
+  .controller('MainCtrl', function ($scope, $rootScope, $modal, $cookies, notifications) {
+
+    notifications.checkPermissions();
+
     $scope.granularities = ['monthly', 'weekly'];
     $rootScope.g = 'weekly';
 

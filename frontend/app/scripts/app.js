@@ -18,7 +18,7 @@ angular
     'ngTouch',
     'ui.bootstrap',
     'ui.router',
-    'restangular',
+    'restangular'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');

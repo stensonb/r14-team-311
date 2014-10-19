@@ -52,8 +52,12 @@ angular.module('frontendApp')
             $scope.events.unshift(evnt);
           }
         }
-        if (!timestamp) {
-          timestamp = events[0].created_at.valueOf()/1000;
+        if (events.length > 0) {
+          var e = events[0];
+          timestamp = e.created_at.valueOf()/1000;
+          var n = new Notification( "Gamegit", {
+            body: e.user_data.login + " has a new event: " + e.type
+          });
         }
         if (!$scope.events) {
           $scope.events = events;
