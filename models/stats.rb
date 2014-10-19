@@ -14,12 +14,18 @@ class Stats
   attr_accessible :period
 
   def self.current_stats
-    code = DateTime.now.strftime("%m%Y")
+    stats_for(DateTime.now)
+  end
+
+  def self.stats_for(date)
+    code = date.strftime("%m%Y")
     stats = Stats.where(period: code).first
     unless stats
       stats = Stats.create(period: code)
     end
+
     stats
+
   end
 end
 

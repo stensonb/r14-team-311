@@ -7,10 +7,10 @@ class PointsManager
     closed_pull_request: 1
   }
 
-  def self.assign_points(event)
+  def self.process_event(event)
     send(:"assign_#{event.type}_event_points", event)
   rescue Exception => e
-    Padrino.logger.warn "Unhandled event type: #{event.type} when assigning points."
+    Padrino.logger.warn "Unhandled event type: #{event.type} when assigning points: #{e.message}"
   end
 
   def self.assign_push_event_points(event)
@@ -22,17 +22,19 @@ class PointsManager
   def self.assign_commit_event_points(commit)
     return unless commit["distinct"]
 
-    increment_points(commit["author"]["username"], :commit)
+    login = commit["author"]["username"] || commit["committer"]["username"],
+
+    increment_points(login, :commit)
   end
 
   def self.assign_issues_event_points(event)
-    action = :"#{event.action}_issue"
-    increment_points(event.user, action)
+    action = :"#{event.data["action"]}_issue"
+    increment_points(event.data["sender"]["login"], action)
   end
 
   def self.assign_pull_request_event_points(event)
-    action = :"#{event.action}_pull_request"
-    increment_points(event.user, action)
+    action = :"#{event.data["action"]}_pull_request"
+    increment_points(event.data["sender"]["login"], action)
   end
 
   def self.increment_points(login_or_user, action)
@@ -43,8 +45,8 @@ class PointsManager
 
     points = POINTS[action] || 0
 
-    Padrino.logger.info "Incrementing #{points} points to user #{user.login} for #{action} action"
-    user.inc(points: action)
+    Padrino.logger.info "Incrementing #{points} points to user #{login_or_user} for #{action} action"
+    user.inc(points: points) if user
   end
 end
 
