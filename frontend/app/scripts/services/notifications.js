@@ -15,7 +15,6 @@ angular.module('frontendApp')
     // Public API here
     return {
       checkPermissions: function () {
-        console.log("Permission: " + permission);
         if(permission != "granted") {
           Notification.requestPermission(function(permission){
             console.log("Permission: ");

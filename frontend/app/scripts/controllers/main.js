@@ -8,9 +8,13 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $modal, $cookies, notifications) {
+  .controller('MainCtrl', function ($scope, $rootScope, $modal, $cookies, Restangular, notifications) {
 
     notifications.checkPermissions();
+
+    Restangular.one('sites', 'config').get().then(function(site) {
+      $rootScope.site_name = site.data.name
+    });
 
     $scope.granularities = ['monthly', 'weekly'];
     $rootScope.g = 'weekly';
