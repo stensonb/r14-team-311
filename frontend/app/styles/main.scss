@@ -158,6 +158,10 @@ ul#stream-list {
     margin: 0;
   }
 
+  .commit-list {
+    margin-left: 20px;
+  }
+
   .commit-msg {
     font-size: 10pt;
   }
@@ -165,6 +169,11 @@ ul#stream-list {
   .avatar {
     margin-top: 6px;
     margin-right: 6px;
+  }
+
+  .more-commits {
+    margin-top: 5px;
+    margin-left: 20px;
   }
 
   b {

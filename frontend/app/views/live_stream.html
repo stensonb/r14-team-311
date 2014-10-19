@@ -17,17 +17,14 @@
 <script type="text/ng-template" id="push_event.html">
   <p><b>pushed</b> <a target="_blank" ng-href="{{event.data.compare}}" > {{event.data.commits.length}} commits </a></p>
   <div class="media" ng-repeat="commit in event.data.head_commits">
-    <a class="pull-left">
-      <img class="avatar media-object" ng-src="" style="width: 32px; height: 32px;">
-    </a>
-    <div class="media-body">
+    <div class="media-body commit-list">
       <span class="label label-info pull-right">{{commit.timestamp.fromNow()}}</span>
       <div class="user-name">{{getCommitterName(commit)}}</div>
       <b>committed</b> <a class="commit-msg" target="_blank" ng-href="{{commit.url}}" > {{commit.message.split("\n")[0]}}</a>
     </div>
   </div>
 
-  <p ng-show="event.data.more_commits.length > 0">
+  <p class="more-commits" ng-show="event.data.more_commits.length > 0">
     <a ng-click="event.isCollapsed = !event.isCollapsed">
       <i class="glyphicon" ng-class="{'glyphicon-chevron-down': event.isCollapsed, 'glyphicon-chevron-right': !event.isCollapsed}"></i>
       {{event.data.more_commits.length}} more commits
@@ -35,13 +32,10 @@
   </p>
 
   <div class="media" ng-repeat="commit in event.data.more_commits" ng-hide="event.isCollapsed">
-    <a class="avatar pull-left">
-      <img class="avatar media-object" ng-src="" style="width: 32px; height: 32px;">
-    </a>
-    <div class="media-body">
+    <div class="media-body commit-list">
       <span class="label label-info pull-right">{{commit.timestamp.fromNow()}}</span>
       <h4 class="user-name">{{commit.committer.username}}</h4>
-      <b>Committed</b><span class="commit-msg">{{commit.message.split("\n")[0]}}</span>
+      <b>Committed</b> <span class="commit-msg">{{commit.message.split("\n")[0]}}</span>
     </div>
   </div>
 </script>
