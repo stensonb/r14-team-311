@@ -1,12 +1,12 @@
 <div ng-controller="LiveStreamCtrl">
-  <ul class="media-list">
+  <ul class="media-list" id="stream-list">
     <li class="media" ng-repeat="event in events">
-      <a class="pull-left">
-        <img class="media-object" alt="64x64" ng-src="{{event.user_data.avatar_url}}" style="width: 32px; height: 32px;">
+      <a class="avatar pull-left">
+        <img class="avatar media-object" alt="64x64" ng-src="{{event.user_data.avatar_url}}" style="width: 32px; height: 32px;">
       </a>
-      <div class="media-body">
+      <div class="media-body event-body">
         <span class="label label-info pull-right">{{event.created_at.fromNow()}}</span>
-        <h4 class="media-heading">{{event.user_data.login}}</h4>
+        <div class="user-name">{{event.user_data.login}}</div>
         <div ng-include="event.type+'_event.html'"></div>
       </div>
     </li>
@@ -15,15 +15,15 @@
 
 
 <script type="text/ng-template" id="push_event.html">
-  <p><strong>pushed</strong> <a target="_blank" ng-href="{{event.data.compare}}" > {{event.data.commits.length}} commits </a></p>
+  <p><b>pushed</b> <a target="_blank" ng-href="{{event.data.compare}}" > {{event.data.commits.length}} commits </a></p>
   <div class="media" ng-repeat="commit in event.data.head_commits">
     <a class="pull-left">
-      <img class="media-object" ng-src="" style="width: 32px; height: 32px;">
+      <img class="avatar media-object" ng-src="" style="width: 32px; height: 32px;">
     </a>
     <div class="media-body">
       <span class="label label-info pull-right">{{commit.timestamp.fromNow()}}</span>
-      <h4 class="media-heading">{{getCommitterName(commit)}}</h4>
-      <strong>committed</strong> <a target="_blank" ng-href="{{commit.url}}" > {{commit.message.split("\n")[0]}}</a>
+      <div class="user-name">{{getCommitterName(commit)}}</div>
+      <b>committed</b> <a class="commit-msg" target="_blank" ng-href="{{commit.url}}" > {{commit.message.split("\n")[0]}}</a>
     </div>
   </div>
 
@@ -35,30 +35,30 @@
   </p>
 
   <div class="media" ng-repeat="commit in event.data.more_commits" ng-hide="event.isCollapsed">
-    <a class="pull-left">
-      <img class="media-object" ng-src="" style="width: 32px; height: 32px;">
+    <a class="avatar pull-left">
+      <img class="avatar media-object" ng-src="" style="width: 32px; height: 32px;">
     </a>
     <div class="media-body">
       <span class="label label-info pull-right">{{commit.timestamp.fromNow()}}</span>
-      <h4 class="media-heading">{{commit.committer.username}}</h4>
-      <strong>committed</strong> {{commit.message.split("\n")[0]}}
+      <h4 class="user-name">{{commit.committer.username}}</h4>
+      <b>Committed</b><span class="commit-msg">{{commit.message.split("\n")[0]}}</span>
     </div>
   </div>
 </script>
 
 <script type="text/ng-template" id="issues_event.html">
   <p>
-    <strong>{{event.data.action}}</strong> the issue
+    <b>{{event.data.action}}</b> the issue
     <a target="_blank" ng-href="{{event.data.issue.html_url}}"> #{{event.data.issue.number}}  "{{event.data.issue.title}}"</a>
   </p>
 </script>
 
 <script type="text/ng-template" id="pull_request_event.html">
-  <p><strong>{{event.data.action}}</strong> the pull request <a target="_blank" ng-href="{{event.data.pull_request.html_url}}"> {{event.data.pull_request.title}}</a> </p>
+  <p><b>{{event.data.action}}</b> the pull request <a target="_blank" ng-href="{{event.data.pull_request.html_url}}"> {{event.data.pull_request.title}}</a> </p>
 </script>
 
 <script type="text/ng-template" id="achievement_event.html">
-  <p><strong>earned</strong> {{getAchievementName(event.data.achivement)}} achievement</p>
+  <p><b>earned</b> {{getAchievementName(event.data.achivement)}} achievement</p>
 </script>
 
 <script type="text/ng-template" id="ping_event.html"></script>
