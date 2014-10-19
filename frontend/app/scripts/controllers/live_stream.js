@@ -32,7 +32,7 @@ angular.module('frontendApp')
             evnt.data.head_commits = headCommits;
           }
           if ($scope.events) {
-            $scope.events.push(evnt);
+            $scope.events.unshift(evnt);
           }
         }
         timestamp = events[0].created_at.unix();
