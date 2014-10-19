@@ -14,6 +14,8 @@ class User
 
   validates_uniqueness_of :login
 
+  after_create :track_stats
+
   def self.find_or_create_by_login(login)
     User.where(login: login).first || User.create(login: login)
   end
@@ -33,6 +35,11 @@ class User
 
     user.save
     user
+  end
+
+  private
+  def track_stats
+    Stats.increment(self.created_at, :collaborators, 1)
   end
 end
 

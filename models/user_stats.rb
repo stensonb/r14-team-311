@@ -12,5 +12,10 @@ class UserStats < Stats
     find_or_create(query)
   end
 
+
+  def self.increment(login, date, key, count = 1)
+    UserStats.stats_for(login, date, :monthly).inc(key => count)
+    UserStats.stats_for(login, date, :weekly).inc(key => count)
+  end
 end
 
