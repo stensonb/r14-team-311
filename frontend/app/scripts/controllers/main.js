@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('MainCtrl', function ($scope, $modal) {
+  .controller('MainCtrl', function ($scope, $modal, $cookies) {
     $scope.openAbout = function() {
       $modal.open({
         templateUrl: 'views/about.html',
@@ -19,4 +19,8 @@ angular.module('frontendApp')
         }
       });
     };
+    if ($cookies.fr !== '1') {
+      $scope.openAbout();
+      $cookies.fr = '1';
+    }
   });
