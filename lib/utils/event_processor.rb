@@ -10,9 +10,18 @@ class EventProcessor
   end
 
   def run
+    users_to_process = Set.new
     @events.each do |event|
       process_event(event)
+      users_to_process.add(event.user)
     end
+
+    award_achievements(users_to_process)
+  end
+
+  def award_achievements(users)
+    achievement_processor = AchievementsProcessor.new(users)
+    achievement_processor.run
   end
 
   def supported_event?(event)

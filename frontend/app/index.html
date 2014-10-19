@@ -21,7 +21,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-controller="MainCtrl">
+    <div ng-controller="MainCtrl" class="main-ctrl">
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -37,9 +37,16 @@
           </div>
         </div>
 
-        <div class="container main">
-          <div ui-view></div>
+        <div class="wrapper">
+          <div class="main container">
+            <div ui-view></div>
+          </div>
+
+          <div class="side-live-stream" ng-controller="LiveStreamCtrl">
+            <div ng-include src="'views/live_stream.html'"></div>
+          </div>
         </div>
+
 
         <div class="footer"> © 2014 r14-team-311/railsrumble </div>
     </div>

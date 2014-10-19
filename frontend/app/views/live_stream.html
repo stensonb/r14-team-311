@@ -1,21 +1,16 @@
 <div ng-controller="LiveStreamCtrl">
-  <div class="panel panel-primary" >
-    <div class="panel-heading">Live stream</div>
-    <div class="panel-body" style="max-height: 39em; overflow: auto">
-      <ul class="media-list">
-        <li class="media" ng-repeat="event in events">
-          <a class="pull-left">
-            <img class="media-object" alt="64x64" ng-src="{{event.data.sender.avatar_url}}" style="width: 32px; height: 32px;">
-          </a>
-          <div class="media-body">
-            <span class="label label-info pull-right">{{event.created_at.fromNow()}}</span>
-            <h4 class="media-heading">{{event.data.sender.login}}</h4>
-            <div ng-include="event.type+'_event.html'"></div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <ul class="media-list">
+    <li class="media" ng-repeat="event in events">
+      <a class="pull-left">
+        <img class="media-object" alt="64x64" ng-src="{{event.data.sender.avatar_url}}" style="width: 32px; height: 32px;">
+      </a>
+      <div class="media-body">
+        <span class="label label-info pull-right">{{event.created_at.fromNow()}}</span>
+        <h4 class="media-heading">{{event.data.sender.login}}</h4>
+        <div ng-include="event.type+'_event.html'"></div>
+      </div>
+    </li>
+  </ul>
 </div>
 
 

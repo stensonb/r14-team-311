@@ -3,12 +3,12 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
-body {
-  background-color: #f5f7fa;
+html, body, .main-ctrl {
+  height: 100%;
 }
 
-.main {
-  margin-top: 60px;
+body {
+  background-color: #f5f7fa;
 }
 
 .widget {
@@ -99,5 +99,31 @@ body {
   }
   &:hover {
     background-color: lighten(#000, 97%);
+  }
+}
+
+.wrapper {
+  height: 100%;
+  overflow: hidden;
+
+  .main {
+    float: left;
+    margin-top: 60px;
+    width: 80%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .side-live-stream {
+    height: 100%;
+    overflow: scroll;
+    margin-top: 60px;
+    position: fixed;
+    right: 0;
+    width: 20%;
+
+    .media-list li {
+      border-bottom: 1px solid #DDD;
+    }
   }
 }
