@@ -50,7 +50,10 @@ class PointsManager
     points = POINTS[action] || 0
     Padrino.logger.info "Incrementing #{points} points to user #{login_or_user} for #{action} action"
     if user
-      user.inc(points: points)
+      user.atomically do
+        user.inc(points: points)
+        user.set(last_activity_at: Time.now)
+      end
       StatsManager.increment_stats(Time.now, :points, user.login, points)
     end
   end

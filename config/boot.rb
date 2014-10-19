@@ -34,6 +34,7 @@ Padrino::Logger::Config[:production][:stream] = :stdout
 ##
 # Add your before (RE)load hooks here
 #
+
 Padrino.before_load do
   Mongoid::Document.send(:include, ActiveModel::MassAssignmentSecurity)
 end
@@ -42,6 +43,8 @@ end
 # Add your after (RE)load hooks here
 #
 Padrino.after_load do
+  timezone = ENV['GITGAME_TIMEZONE'] || 'UTC'
+  Time.zone = timezone
 end
 
 Padrino.load!

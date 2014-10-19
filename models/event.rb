@@ -11,6 +11,7 @@ class Event
 
   validates_presence_of :type
 
+  before_create :find_user
   before_save :cache_user_data
 
   def cache_user_data
@@ -23,6 +24,9 @@ class Event
       points: self.user.points,
       level: self.user.level
     }
+  end
+
+  def find_user
   end
 end
 
