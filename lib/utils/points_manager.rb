@@ -1,10 +1,10 @@
 class PointsManager
   POINTS = {
-    commit: 1,
+    commit: 5,
     opened_issue: 1,
-    closed_issue: 1,
-    opened_pull_request: 1,
-    closed_pull_request: 1
+    closed_issue: 10,
+    opened_pull_request: 5,
+    closed_pull_request: 10
   }
 
   def self.process_event(event)
