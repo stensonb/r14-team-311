@@ -35,5 +35,10 @@ class Stats
     end
     stats
   end
+
+  def self.increment(date, key, count = 1)
+    Stats.stats_for(date, :monthly).inc(key => count)
+    Stats.stats_for(date, :weekly).inc(key => count)
+  end
 end
 

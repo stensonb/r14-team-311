@@ -43,9 +43,8 @@ class StatsManager
   end
 
   def self.increment_stats(date, key, login, count = 1)
-    Stats.stats_for(date, :monthly).inc(key => count)
-    Stats.stats_for(date, :weekly).inc(key => count)
-    UserStats.stats_for(login, date, :monthly).inc(key => count)
-    UserStats.stats_for(login, date, :weekly).inc(key => count)
+    Stats.increment(date, key, count)
+    UserStats.increment(login, date, key, count)
   end
 end
+
