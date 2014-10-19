@@ -6,8 +6,9 @@ class GithubEvent < Event
 
   validates_presence_of :delivery_id
 
-  scope :events_to_process, ->{ where(processed: false) }
+  before_create :assign_creation_date
 
+  scope :events_to_process, ->{ where(processed: false) }
 
   def self.build_from_payload(headers, payload_body)
     event = self.find_or_build_by_delivery_id(headers["HTTP_X_GITHUB_DELIVERY"])
@@ -28,5 +29,14 @@ class GithubEvent < Event
     self.user ||= User.find_or_build_from_json(self.data["sender"])
   end
 
+  def assign_creation_date
+    date = Time.parse(self.data['created_at']) rescue nil
+
+    if date.nil? && self.type == "push"
+      date = Time.parse(self.data['head_commit']['timestamp']) rescue Time.now
+    end
+
+    self.created_at = date
+  end
 end
 

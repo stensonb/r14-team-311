@@ -135,7 +135,7 @@ class CodeAnalyser
   end
 
   def analyze(file_path)
-    return if file_path =~ /spec\//
+    return if file_path =~ /spec\// || file_path !~ /\.rb/
 
     flog = Flog.new(:continue => true, :quiet => true, :details => true)
     flog.flog(file_path)
