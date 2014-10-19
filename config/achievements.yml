@@ -2,37 +2,100 @@ achievements:
   - name: "Welcome to the party!"
     id: "welcome"
     description: "Completed first commit"
+    image_url: "http://i.imgur.com/Fi8WYLf.png"
     conditions:
       commits: 1
 
   - name: "I'm here to stay"
     id: "im_here_to_stay"
+    description: "Completed 50 commits"
+    image_url: "http://i.imgur.com/8K9WbIj.png"
+    conditions:
+      commits: 50
+
+  - name: "Committer Rock Star"
+    id: "committer_rock_star"
     description: "Completed 100 commits"
+    image_url: "http://i.imgur.com/2Dui58G.png"
     conditions:
       commits: 100
 
   - name: "I got a bug!"
     id: "i_got_a_bug"
     description: "Opened first issue"
+    image_url: "http://i.imgur.com/a2Q96kw.png"
     conditions:
       opened_issues: 1
 
-  - name: "The QA Agent"
+  - name: "QA Agent"
     id: "qa_agent"
-    description: "Opened 5 issues"
+    description: "Opened 50 issues"
+    image_url: "http://i.imgur.com/pSh0dFB.png"
     conditions:
-      opened_issues: 5
+      opened_issues: 50
+
+  - name: "Inspector Gadget"
+    id: "inspector_gadget"
+    description: "Opened 100 issues"
+    image_url: "http://i.imgur.com/1UIh4pv.png"
+    conditions:
+      opened_issues: 100
 
   - name: "Die! Bug! Die!"
     id: "die_bug"
     description: "Closed first issue"
+    image_url: "http://i.imgur.com/0JIDz6d.png"
     conditions:
       closed_issues: 1
 
+  - name: "The Bug Hunter"
+    id: "bug_hunter"
+    description: "Closed 50 issues"
+    image_url: "http://i.imgur.com/ToDqZIv.png"
+    conditions:
+      closed_issues: 50
+
   - name: "The exterminator"
     id: "exterminator"
-    description: "Closed 5 issues"
+    description: "Closed 100 issues"
+    image_url: "http://i.imgur.com/8ZpfJD9.png"
     conditions:
-      closed_issues: 1
+      closed_issues: 100
+
+  - name: "Handyman apprentice"
+    id: "handyman_apprentice"
+    description: "Opened 5 pull requests"
+    image_url: "http://i.imgur.com/IlqJsVH.png"
+    conditions:
+      opened_pull_requests: 5
+
+  - name: "Handyman"
+    id: "handyman"
+    description: "Opened 50 pull requests"
+    image_url: "http://i.imgur.com/boWolg5.png"
+    conditions:
+      opened_pull_requests: 50
+
+
+  - name: "Connoisseur"
+    id: "connoisseur"
+    description: "Closed 1 pull request"
+    image_url: "http://i.imgur.com/bpuCupL.png"
+    conditions:
+      closed_pull_requests: 1
+
+  - name: "Expert"
+    id: "expert"
+    description: "Closed 100 pull requests"
+    image_url: "http://i.imgur.com/JTL10iZ.png"
+    conditions:
+      closed_pull_requests: 1
+
+  - name: "Judge"
+    id: "judge"
+    description: "Closed 50 pull requests"
+    image_url: "http://i.imgur.com/1xF18vP.png"
+    conditions:
+      closed_pull_requests: 50
 
 
