@@ -15,6 +15,7 @@ class GithubEvent < Event
 
     payload_json = JSON.parse(payload_body)
     event.data = payload_json
+    event.find_user.save
 
     return event
   end
@@ -23,9 +24,8 @@ class GithubEvent < Event
     GithubEvent.where(delivery_id: delivery_id).first || GithubEvent.new(delivery_id: delivery_id)
   end
 
-  private
   def find_user
-    self.user = User.find_or_build_from_json(self.data["sender"])
+    self.user ||= User.find_or_build_from_json(self.data["sender"])
   end
 
 end
