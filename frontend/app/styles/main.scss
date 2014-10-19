@@ -88,7 +88,7 @@ h1, h2, h3, h4 {
 
   .main {
     float: left;
-    margin-top: 60px;
+    padding-top: 60px;
     width: 80%;
     height: 100%;
     overflow: auto;
@@ -96,14 +96,19 @@ h1, h2, h3, h4 {
 
   .side-live-stream {
     height: 100%;
-    overflow: scroll;
-    margin-top: 60px;
+    overflow-y: scroll;
     position: fixed;
     right: 0;
     width: 20%;
 
-    .media-list li {
-      border-bottom: 1px solid #DDD;
+    .media-list {
+      background-color: #FFF;
+      margin-top: 51px;
+      padding: 10px;
+
+      li {
+        border-bottom: 1px solid #DDD;
+      }
     }
   }
 }
