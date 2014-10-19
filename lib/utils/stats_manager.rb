@@ -38,7 +38,7 @@ class StatsManager
 
   def self.increment_pull_request_event_stats(event)
     date = Time.parse(event.data["created_at"]) rescue Time.now
-    action = :"#{event.data["action"]}_pull_request"
+    action = :"#{event.data["action"]}_pull_requests"
     increment_stats(date, action, event.data["sender"]["login"])
   end
 
