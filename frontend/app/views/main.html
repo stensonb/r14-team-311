@@ -81,7 +81,7 @@
               <img class="media-object" alt="64x64" ng-src="{{event.data.sender.avatar_url}}" style="width: 32px; height: 32px;">
             </a>
             <div class="media-body">
-              <span class="label label-info pull-right">just now</span>
+              <span class="label label-info pull-right">{{event.created_at.fromNow()}}</span>
               <h4 class="media-heading">{{event.data.sender.login}}</h4>
               <div ng-include="event.type+'_event.html'">
             </div>
@@ -95,29 +95,36 @@
 <script type="text/ng-template" id="push_event.html">
   <p>pushed {{event.data.commits.length}} commits</p>
   <!-- Nested media object -->
-  <div class="media" ng-repeat="commit in event.data.commits">
+  <div class="media" ng-repeat="commit in event.data.head_commits">
     <a class="pull-left" href="#">
-      <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="" style="width: 32px; height: 32px;">
+      <img class="media-object" ng-src="" style="width: 32px; height: 32px;">
     </a>
     <div class="media-body">
-      <span class="label label-info pull-right">just now</span>
+      <span class="label label-info pull-right">{{commit.timestamp.fromNow()}}</span>
       <h4 class="media-heading">{{commit.committer.username}}</h4>
-      committed "{{commit.message}}"
+      <strong>committed</strong> {{commit.message.split("\n")[0]}}
+    </div>
+  </div>
+
+  <p ng-show="event.data.more_commits.length > 0">
+    <a ng-click="event.isCollapsed = !event.isCollapsed">
+      <i class="glyphicon" ng-class="{'glyphicon-chevron-down': event.isCollapsed, 'glyphicon-chevron-right': !event.isCollapsed}"></i>
+      {{event.data.more_commits.length}} more commits
+    </a>
+  </p>
+
+  <div class="media" ng-repeat="commit in event.data.more_commits" ng-hide="event.isCollapsed">
+    <a class="pull-left" href="#">
+      <img class="media-object" ng-src="" style="width: 32px; height: 32px;">
+    </a>
+    <div class="media-body">
+      <span class="label label-info pull-right">{{commit.timestamp.fromNow()}}</span>
+      <h4 class="media-heading">{{commit.committer.username}}</h4>
+      <strong>committed</strong> {{commit.message.split("\n")[0]}}
     </div>
   </div>
 </script>
 
 <script type="text/ng-template" id="issues_event.html">
   <p><strong>{{event.data.action}}</strong> the issue "{{event.data.issue.title}}" </p>
-  <!-- Nested media object -->
-  <div class="media" ng-repeat="commit in event.data.commits">
-    <a class="pull-left" href="#">
-      <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="" style="width: 32px; height: 32px;">
-    </a>
-    <div class="media-body">
-      <span class="label label-info pull-right">just now</span>
-      <h4 class="media-heading">{{commit.committer.username}}</h4>
-      committed "{{commit.message}}"
-    </div>
-  </div>
 </script>
