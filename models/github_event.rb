@@ -21,7 +21,7 @@ class GithubEvent < Event
   end
 
   def self.find_or_build_by_delivery_id(delivery_id)
-    Event.where(delivery_id: delivery_id).first || Event.new(delivery_id: delivery_id)
+    GithubEvent.where(delivery_id: delivery_id).first || GithubEvent.new(delivery_id: delivery_id)
   end
 
   private
