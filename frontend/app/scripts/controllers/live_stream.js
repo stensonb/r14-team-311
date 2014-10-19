@@ -52,8 +52,8 @@ angular.module('frontendApp')
             $scope.events.unshift(evnt);
           }
         }
-        if (!timestamp) {
-          timestamp = events[0].created_at.unix()+1;
+        if (events.length > 0) {
+          timestamp = events[0].created_at.unix() + 1;
         }
         if (!$scope.events) {
           $scope.events = events;
