@@ -17,7 +17,7 @@ class Stats
     code = DateTime.now.strftime("%m%Y")
     stats = Stats.where(period: code).first
     unless stats
-      stats = Stats.new(period: code)
+      stats = Stats.create(period: code)
     end
     stats
   end
