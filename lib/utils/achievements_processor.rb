@@ -43,6 +43,7 @@ class AchievementsProcessor
         achivement: achievement['id']
       }
     })
+    Padrino.logger.info "Awarded achievement #{achievement['id']} to #{user.login}"
   end
 
   def already_awarded?(user, achievement)
