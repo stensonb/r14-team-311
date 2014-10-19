@@ -29,16 +29,16 @@
       <div class="half-float">
         <img src="http://lorempixel.com/1024/268" alt="" class="img-responsive">
         <div class="half-float-bottom">
-           <img src="images/user/09.jpg" alt="Image" class="img-thumbnail img-circle thumb128">
+           <img ng-src="{{leader.avatar_url}}" alt="Image" class="img-thumbnail img-circle thumb128">
         </div>
       </div>
       <div class="panel-body text-center">
-        <h3 class="m0">Ted Berry</h3>
+        <h3 class="m0">{{leader.login}}</h3>
       </div>
       <div class="panel-body text-center bg-gray-dark">
         <div class="row row-table">
           <div class="col-xs-4">
-            <h3 class="m0">400</h3>
+            <h3 class="m0">{{leader.points}}</h3>
             <p class="m0">Points</p>
           </div>
           <div class="col-xs-4">
@@ -52,20 +52,10 @@
         </div>
       </div>
       <div class="list-group">
-        <a href="#" class="list-group-item">
-          <span class="label label-primary pull-right">15</span>
+        <a href="#" class="list-group-item" ng-repeat="user in reset">
+          <span class="label label-primary pull-right">user.points</span>
           <em class="fa fa-fw fa-clock-o text-muted"></em>
-          Peggy Peters
-        </a>
-        <a href="#" class="list-group-item">
-          <span class="label label-primary pull-right">100</span>
-          <em class="fa fa-fw fa-user text-muted"></em>
-          Sylvia Morris
-        </a>
-        <a href="#" class="list-group-item">
-          <span class="label label-primary pull-right">300</span>
-          <em class="fa fa-fw fa-folder-open-o text-muted"></em>
-          Sarah Pierce
+          {{user.login}}
         </a>
       </div>
     </div>
@@ -93,7 +83,7 @@
 </div>
 
 <script type="text/ng-template" id="push_event.html">
-  <p>pushed {{event.data.commits.length}} commits</p>
+  <p><strong>pushed</strong> {{event.data.commits.length}} commits</p>
   <!-- Nested media object -->
   <div class="media" ng-repeat="commit in event.data.head_commits">
     <a class="pull-left" href="#">
@@ -128,3 +118,5 @@
 <script type="text/ng-template" id="issues_event.html">
   <p><strong>{{event.data.action}}</strong> the issue "{{event.data.issue.title}}" </p>
 </script>
+
+<script type="text/ng-template" id="ping_event.html"></script>
