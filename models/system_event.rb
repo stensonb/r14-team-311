@@ -1,0 +1,3 @@
+class SystemEvent < Event
+end
+

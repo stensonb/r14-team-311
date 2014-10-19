@@ -36,6 +36,14 @@ class AchievementsProcessor
 
   def award_achievement(user, achievement)
     user.add_to_set(achievements: achievement['id'])
+    SystemEvent.create({
+      type: "achievement",
+      user: user,
+      data: {
+        achivement: achievement['id']
+      }
+    })
+    Padrino.logger.info "Awarded achievement #{achievement['id']} to #{user.login}"
   end
 
   def already_awarded?(user, achievement)
