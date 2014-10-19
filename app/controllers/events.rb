@@ -10,3 +10,4 @@ Gamegit::App.controllers :events do
     angular_response 200, events
   end
 end
+
