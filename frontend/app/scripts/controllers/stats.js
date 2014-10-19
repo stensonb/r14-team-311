@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('StatsCtrl', function ($scope, Restangular) {
+  .controller('StatsCtrl', function ($scope, $rootScope, Restangular) {
     var before;
     $scope.cStat = 'points';
     $scope.stats = [];
@@ -28,18 +28,26 @@ angular.module('frontendApp')
       };
     }
 
-    Restangular.one('stats', 'monthly').getList().then(function(stats){
-      $scope.stats = stats;
-      $scope.current = $scope.stats[$scope.stats.length-1];
-      before = $scope.stats[$scope.stats.length-2];
-      if ($scope.stats.length <= 1) {
-        before = createFakeStats();
-        $scope.stats.unshift(before);
-        $scope.stats.unshift(createFakeStats());
-        $scope.stats.unshift(createFakeStats());
-        $scope.stats.unshift(createFakeStats());
-      }
+    function getStats() {
+      Restangular.one('stats', $rootScope.g).getList().then(function(stats){
+        $scope.stats = stats;
+        $scope.current = $scope.stats[$scope.stats.length-1];
+        before = $scope.stats[$scope.stats.length-2];
+        if ($scope.stats.length <= 1) {
+          before = createFakeStats();
+          $scope.stats.unshift(before);
+          $scope.stats.unshift(createFakeStats());
+          $scope.stats.unshift(createFakeStats());
+          $scope.stats.unshift(createFakeStats());
+        }
+      });
+    }
+
+    $rootScope.$watch('g', function () {
+      getStats();
     });
+
+    getStats();
 
     $scope.extractData = function(key) {
       var rs = [];

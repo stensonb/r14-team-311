@@ -29,6 +29,16 @@
             </div>
             <div class="navbar-collapse collapse">
               <form class="navbar-form navbar-right" role="form">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    {{g}} <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li ng-repeat="granularity in granularities">
+                      <a ng-click="changeGranularity(granularity)" >{{granularity}}</a>
+                    </li>
+                  </ul>
+                </div>
                 <div class="btn btn-default" ng-click="openAbout()">
                   <i class="glyphicon glyphicon-question-sign"></i>
                 </div>
