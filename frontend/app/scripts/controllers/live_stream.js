@@ -23,6 +23,10 @@ angular.module('frontendApp')
       return labels[id];
     };
 
+    $scope.getCommitterName = function(commit) {
+      return commit.committer.username||commit.committer.email.replace(/@(.*)/, '');
+    };
+
     (function tick() {
       Restangular.all('events').getList({timestamp: timestamp}).then(function(events) {
         for(var i = 0; i < events.length; i++) {
