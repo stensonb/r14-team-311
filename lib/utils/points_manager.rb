@@ -22,7 +22,7 @@ class PointsManager
   def self.assign_commit_event_points(commit)
     return unless commit["distinct"]
 
-    login = commit["author"]["username"] || commit["committer"]["username"],
+    login = commit["author"]["username"] || commit["committer"]["username"]
 
     increment_points(login, :commit)
   end
@@ -44,9 +44,9 @@ class PointsManager
     end
 
     points = POINTS[action] || 0
-
     Padrino.logger.info "Incrementing #{points} points to user #{login_or_user} for #{action} action"
     user.inc(points: points) if user
   end
+
 end
 

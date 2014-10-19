@@ -15,22 +15,24 @@ class StatsManager
     return unless commit["distinct"]
 
     date = Time.parse(commit["timestamp"])
-    increment_stats(date, :commits)
+    login = commit["author"]["username"] || commit["committer"]["username"]
+    increment_stats(date, :commits, login)
   end
 
   def self.increment_issues_event_stats(event)
     date = Time.parse(event.data["created_at"]) rescue Time.now
     action = :"#{event.data["action"]}_issues"
-    increment_stats(date, action)
+    increment_stats(date, action, event.data["sender"]["login"])
   end
 
   def self.increment_pull_request_event_stats(event)
     date = Time.parse(event.data["created_at"]) rescue Time.now
     action = :"#{event.data["action"]}_pull_request"
-    increment_stats(date, action)
+    increment_stats(date, action, event.data["sender"]["login"])
   end
 
-  def self.increment_stats(date, key, count = 1)
+  def self.increment_stats(date, key, login, count = 1)
     Stats.stats_for(date).inc(key => count)
+    UserStats.stats_for(login, date).inc(key => count)
   end
 end

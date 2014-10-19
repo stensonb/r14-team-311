@@ -13,19 +13,21 @@ class Stats
 
   attr_accessible :period
 
-  def self.current_stats
-    stats_for(DateTime.now)
+  def self.period_for_date(date, scope = :monthly)
+    date.strftime("%Y%m")
   end
 
   def self.stats_for(date)
-    code = date.strftime("%m%Y")
-    stats = Stats.where(period: code).first
+    period = period_for_date(date)
+    find_or_create(period: period)
+  end
+
+  def self.find_or_create(query)
+    stats = self.where(query).first
     unless stats
-      stats = Stats.create(period: code)
+      stats = self.create(query)
     end
-
     stats
-
   end
 end
 
