@@ -1,0 +1,91 @@
+<div ng-controller="StatsCtrl">
+  <div class="panel widget">
+    <div class="panel-body bg-primary">
+      <div class="h5 mt0">Monthly Points</div>
+      <!-- Line chart-->
+      <div sparkline="stats.points" data-type="line" data-height="80" data-width="100%" data-line-width="2" data-line-color="#dddddd" data-spot-color="#bbbbbb" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="3" data-resize="true"></div>
+    </div>
+    <div class="panel-body bg-inverse">
+      <div class="row text-center">
+          <div class="col-xs-6">
+            <!-- Bar chart-->
+            <div sparkline="stats.points" data-bar-color="#5d9cec" data-height="30" data-bar-width="6" data-bar-spacing="6"></div>
+          </div>
+          <div class="col-xs-6">
+            <h4 class="m0">+150</h4>
+            <p class="m0 text-muted">
+               <small>From last month</small>
+            </p>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel widget">
+  <div class="panel-body bg-primary">
+    <div class="h5 mt0">Monthly Commits</div>
+    <!-- Line chart-->
+    <div sparkline="stats.commits" data-type="line" data-height="80" data-width="100%" data-line-width="2" data-line-color="#dddddd" data-spot-color="#bbbbbb" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="3" data-resize="true"></div>
+  </div>
+  <div class="panel-body bg-inverse">
+    <div class="row text-center">
+        <div class="col-xs-6">
+          <!-- Bar chart-->
+          <div sparkline="stats.commits" data-bar-color="#5d9cec" data-height="30" data-bar-width="6" data-bar-spacing="6"></div>
+        </div>
+        <div class="col-xs-6">
+          <h4 class="m0">+150</h4>
+          <p class="m0 text-muted">
+             <small>From last month</small>
+          </p>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="panel widget">
+  <div class="panel-body bg-primary">
+    <div class="h5 mt0">Monthly opened pull request</div>
+    <!-- Line chart-->
+    <div sparkline="stats.opened_pull_request" data-type="line" data-height="80" data-width="100%" data-line-width="2" data-line-color="#dddddd" data-spot-color="#bbbbbb" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="3" data-resize="true"></div>
+  </div>
+  <div class="panel-body bg-inverse">
+    <div class="row text-center">
+        <div class="col-xs-6">
+          <!-- Bar chart-->
+          <div sparkline="stats.opened_pull_request" data-bar-color="#5d9cec" data-height="30" data-bar-width="6" data-bar-spacing="6"></div>
+        </div>
+        <div class="col-xs-6">
+          <h4 class="m0">+150</h4>
+          <p class="m0 text-muted">
+             <small>From last month</small>
+          </p>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="panel widget">
+  <div class="panel-body bg-primary">
+    <div class="h5 mt0">Monthly closed pull request</div>
+    <!-- Line chart-->
+    <div sparkline="stats.closed_pull_request" data-type="line" data-height="80" data-width="100%" data-line-width="2" data-line-color="#dddddd" data-spot-color="#bbbbbb" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="3" data-resize="true"></div>
+  </div>
+  <div class="panel-body bg-inverse">
+    <div class="row text-center">
+        <div class="col-xs-6">
+          <!-- Bar chart-->
+          <div sparkline="stats.closed_pull_request" data-bar-color="#5d9cec" data-height="30" data-bar-width="6" data-bar-spacing="6"></div>
+        </div>
+        <div class="col-xs-6">
+          <h4 class="m0">+150</h4>
+          <p class="m0 text-muted">
+             <small>From last month</small>
+          </p>
+        </div>
+    </div>
+  </div>
+</div>
