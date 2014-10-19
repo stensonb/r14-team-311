@@ -6,6 +6,8 @@ class StatsManager
   end
 
   def self.increment_push_event_stats(event)
+    increment_stats(event.created_at, :pushes, event.data["sender"]["login"])
+
     event.data["commits"].each do |commit|
       increment_commit_event_stats(commit)
     end
