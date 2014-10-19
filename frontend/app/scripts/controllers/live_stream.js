@@ -53,7 +53,7 @@ angular.module('frontendApp')
           }
         }
         if (!timestamp) {
-          timestamp = events[0].created_at.unix();
+          timestamp = events[0].created_at.unix()+1;
         }
         if (!$scope.events) {
           $scope.events = events;
