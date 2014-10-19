@@ -2,7 +2,7 @@ class EventProcessor
   SUPPORTED_EVENTS = %w[
     push
     issues
-    pull_requests
+    pull_request
   ]
 
   def initialize(events)
