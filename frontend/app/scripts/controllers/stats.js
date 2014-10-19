@@ -18,13 +18,13 @@ angular.module('frontendApp')
         assigned_issues: Math.round(Math.random()*20),
         closed_issues: Math.round(Math.random()*20),
         closed_pull_request: Math.round(Math.random()*20),
-        closed_pull_requests: Math.round(Math.random()*20),
         commits: Math.round(Math.random()*20),
         opened_issues: Math.round(Math.random()*20),
         opened_pull_request: Math.round(Math.random()*20),
         opened_pull_requests: Math.round(Math.random()*20),
         points: Math.round(Math.random()*20),
-        pushes: Math.round(Math.random()*20)
+        pushes: Math.round(Math.random()*20),
+        collaborators: Math.round(Math.random()*20)
       };
     }
 
@@ -45,7 +45,7 @@ angular.module('frontendApp')
       var rs = [];
       for (var i = 0; i < $scope.stats.length; i++) {
         var stat = $scope.stats[i];
-        rs.push(stat[key]);
+        rs.push(stat[key]||0);
       }
       return rs;
     };
@@ -57,7 +57,7 @@ angular.module('frontendApp')
 
       var beforeData = 0;
       if (before) {
-        beforeData = before[key];
+        beforeData = before[key]||0;
       }
       var rs = $scope.current[key] - beforeData;
       if (rs > 0) {
@@ -69,7 +69,7 @@ angular.module('frontendApp')
     };
 
     var labels = {
-      assigned_issues: 'assigned_issues',
+      assigned_issues: 'assigned issues',
       closed_issues: 'closed issues',
       closed_pull_request: 'closed pull request',
       closed_pull_requests: 'closed pull requests',
@@ -78,7 +78,8 @@ angular.module('frontendApp')
       opened_pull_request: 'opened pull request',
       opened_pull_requests: 'opened pull requests',
       points: 'points',
-      pushes: 'pushes'
+      pushes: 'pushes',
+      collaborators: 'collaborators'
     };
 
     $scope.getLabel = function(key) {

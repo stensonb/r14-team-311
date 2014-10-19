@@ -94,6 +94,7 @@ body {
 }
 
 .stats-box {
+  cursor: pointer;
   &.active  {
     background-color: lighten(#000, 96%);
   }

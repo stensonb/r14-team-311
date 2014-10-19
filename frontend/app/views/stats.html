@@ -24,33 +24,18 @@
   <div class="panel widget">
     <div class="row row-table row-flush">
       <div class="col-xs-6 stats-box"
-        ng-class="{active: (isActive('points'))}"
-        ng-click="changeCstat('points')">
+        ng-repeat="key in ['points', 'commits', 'pushes']"
+        ng-class="{active: (isActive(key))}"
+        ng-click="changeCstat(key)">
         <div class="row row-table row-flush">
           <div class="col-xs-4 text-center text-info">
             <!-- Bar chart-->
-            <div sparkline="extractData('points')" data-bar-color="#5d9cec" data-height="20" data-bar-width="3" data-bar-spacing="2"></div>
+            <div sparkline="extractData(key)" data-bar-color="#5d9cec" data-height="20" data-bar-width="3" data-bar-spacing="2"></div>
           </div>
           <div class="col-xs-8">
             <div class="panel-body text-center">
-              <h4 class="mt0">{{current['points']}}</h4>
-              <p class="mb0 text-muted">Points</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-6 stats-box"
-        ng-class="{active: (isActive('commits'))}"
-        ng-click="changeCstat('commits')">
-        <div class="row row-table row-flush">
-          <div class="col-xs-4 text-center text-danger">
-            <!-- Bar chart-->
-            <div sparkline="extractData('commits')" data-bar-color="#5d9cec" data-height="20" data-bar-width="3" data-bar-spacing="2"></div>
-          </div>
-          <div class="col-xs-8">
-            <div class="panel-body text-center">
-              <h4 class="mt0">{{current['commits']}}</h4>
-              <p class="mb0 text-muted">Commits</p>
+              <h4 class="mt0">{{current[key]}}</h4>
+              <p class="mb0 text-muted">{{getLabel(key)}}</p>
             </div>
           </div>
         </div>
@@ -59,34 +44,18 @@
 
     <div class="row row-table row-flush">
       <div class="col-xs-6 stats-box"
-        ng-class="{active: (isActive('opened_pull_request'))}"
-        ng-click="changeCstat('opened_pull_request')">
+        ng-repeat="key in ['opened_issues', 'assigned_issues', 'closed_issues']"
+        ng-class="{active: (isActive(key))}"
+        ng-click="changeCstat(key)">
         <div class="row row-table row-flush">
-          <div class="col-xs-4 text-center text-inverse">
+          <div class="col-xs-4 text-center text-info">
             <!-- Bar chart-->
-            <div sparkline="extractData('opened_pull_request')" data-bar-color="#5d9cec" data-height="20" data-bar-width="3" data-bar-spacing="2"></div>
+            <div sparkline="extractData(key)" data-bar-color="#5d9cec" data-height="20" data-bar-width="3" data-bar-spacing="2"></div>
           </div>
           <div class="col-xs-8">
             <div class="panel-body text-center">
-              <h4 class="mt0">{{current['opened_pull_request']}}</h4>
-              <p class="mb0 text-muted">Opened Pull request</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xs-6 stats-box"
-        ng-class="{active: (isActive('opened_issues'))}"
-        ng-click="changeCstat('opened_issues')">
-        <div class="row row-table row-flush">
-          <div class="col-xs-4 text-center text-success">
-            <!-- Bar chart-->
-            <div sparkline="extractData('opened_issues')" data-bar-color="#5d9cec" data-height="20" data-bar-width="3" data-bar-spacing="2"></div>
-          </div>
-          <div class="col-xs-8">
-            <div class="panel-body text-center">
-              <h4 class="mt0">{{current['opened_issues']}}</h4>
-              <p class="mb0 text-muted">Opened issues</p>
+              <h4 class="mt0">{{current[key]}}</h4>
+              <p class="mb0 text-muted">{{getLabel(key)}}</p>
             </div>
           </div>
         </div>
@@ -95,33 +64,18 @@
 
     <div class="row row-table row-flush">
       <div class="col-xs-6 stats-box"
-        ng-class="{active: (isActive('closed_pull_request'))}"
-        ng-click="changeCstat('closed_pull_request')">
+        ng-repeat="key in ['opened_pull_request', 'closed_pull_request', 'collaborators']"
+        ng-class="{active: (isActive(key))}"
+        ng-click="changeCstat(key)">
         <div class="row row-table row-flush">
-          <div class="col-xs-4 text-center text-inverse">
+          <div class="col-xs-4 text-center text-info">
             <!-- Bar chart-->
-            <div sparkline="extractData('closed_pull_request')" data-bar-color="#5d9cec" data-height="20" data-bar-width="3" data-bar-spacing="2"></div>
+            <div sparkline="extractData(key)" data-bar-color="#5d9cec" data-height="20" data-bar-width="3" data-bar-spacing="2"></div>
           </div>
           <div class="col-xs-8">
             <div class="panel-body text-center">
-              <h4 class="mt0">{{current['closed_pull_request']}}</h4>
-              <p class="mb0 text-muted">Closed pull request</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-6 stats-box"
-        ng-class="{active: (isActive('closed_issues'))}"
-        ng-click="changeCstat('closed_issues')">
-        <div class="row row-table row-flush">
-          <div class="col-xs-4 text-center text-success">
-            <!-- Bar chart-->
-            <div sparkline="extractData('closed_issues')" data-bar-color="#5d9cec" data-height="20" data-bar-width="3" data-bar-spacing="2"></div>
-          </div>
-          <div class="col-xs-8">
-            <div class="panel-body text-center">
-              <h4 class="mt0">{{current['closed_issues']}}</h4>
-              <p class="mb0 text-muted">Closed issues</p>
+              <h4 class="mt0">{{current[key]}}</h4>
+              <p class="mb0 text-muted">{{getLabel(key)}}</p>
             </div>
           </div>
         </div>
