@@ -2,11 +2,11 @@
   <ul class="media-list">
     <li class="media" ng-repeat="event in events">
       <a class="pull-left">
-        <img class="media-object" alt="64x64" ng-src="{{event.data.sender.avatar_url}}" style="width: 32px; height: 32px;">
+        <img class="media-object" alt="64x64" ng-src="{{event.user_data.avatar_url}}" style="width: 32px; height: 32px;">
       </a>
       <div class="media-body">
         <span class="label label-info pull-right">{{event.created_at.fromNow()}}</span>
-        <h4 class="media-heading">{{event.data.sender.login}}</h4>
+        <h4 class="media-heading">{{event.user_data.login}}</h4>
         <div ng-include="event.type+'_event.html'"></div>
       </div>
     </li>
@@ -55,5 +55,8 @@
   <p><strong>{{event.data.action}}</strong> the pull request "{{event.data.pull_request.title}}" </p>
 </script>
 
+<script type="text/ng-template" id="achievement_event.html">
+  <p>earned {{getAchievementName(event.data.achivement)}} achievement</p>
+</script>
 
 <script type="text/ng-template" id="ping_event.html"></script>

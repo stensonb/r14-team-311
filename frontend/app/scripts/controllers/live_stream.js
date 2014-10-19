@@ -10,6 +10,19 @@
 angular.module('frontendApp')
   .controller('LiveStreamCtrl', function ($scope, $timeout, Restangular) {
     var timestamp = 0;
+
+    var labels = {};
+    Restangular.one('achievements', 'types').getList().then(function(types) {
+      for (var i = 0; i < types.length; i++) {
+        var achievement = types[i];
+        labels[achievement.id] = achievement.name;
+      }
+    });
+
+    $scope.getAchievementName = function(id) {
+      return labels[id];
+    };
+
     (function tick() {
       Restangular.all('events').getList({timestamp: timestamp}).then(function(events) {
         for(var i = 0; i < events.length; i++) {
