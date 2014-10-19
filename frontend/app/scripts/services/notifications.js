@@ -8,7 +8,7 @@
  * Factory in the frontendApp.
  */
 angular.module('frontendApp')
-  .factory('notifications', function () {
+  .factory('notifications', function ($timeout) {
 
     var permission = Notification.permission;
 
@@ -22,6 +22,14 @@ angular.module('frontendApp')
           });
         }
         return permission;
+      },
+
+      raise: function(msg) {
+        var n = new Notification( "Gamegit", {
+          body: msg
+        });
+
+        $timeout(function() { n.close() }, 3000);
       }
     };
   });

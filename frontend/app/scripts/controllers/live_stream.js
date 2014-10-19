@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('LiveStreamCtrl', function ($scope, $timeout, Restangular) {
+  .controller('LiveStreamCtrl', function ($scope, $timeout, Restangular, notifications) {
     var timestamp = 0;
 
     var labels = {};
@@ -55,9 +55,7 @@ angular.module('frontendApp')
         if (events.length > 0) {
           var e = events[0];
           timestamp = e.created_at.valueOf()/1000;
-          var n = new Notification( "Gamegit", {
-            body: e.user_data.login + " has a new event: " + e.type
-          });
+          notifications.raise(e.user_data.login + " has a new event: " + e.type);
         }
         if (!$scope.events) {
           $scope.events = events;
