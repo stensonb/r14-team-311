@@ -22,7 +22,11 @@ class PointsManager
   def self.assign_commit_event_points(commit)
     return unless commit["distinct"]
 
-    login = commit["author"]["username"] || commit["committer"]["username"]
+    login = commit["author"]["username"]
+    if login.nil?
+      # In some cases github doesn't include the username
+      login = commit["author"]["email"].split("@", 2).first
+    end
 
     increment_points(login, :commit)
   end

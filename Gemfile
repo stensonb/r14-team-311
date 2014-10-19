@@ -21,6 +21,7 @@ gem 'rack-parser', require: 'rack/parser'
 
 gem 'thin'
 gem 'protected_attributes'
+gem 'pry'
 
 # Test requirements
 
