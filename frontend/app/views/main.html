@@ -81,7 +81,7 @@
               <img class="media-object" alt="64x64" ng-src="{{event.data.sender.avatar_url}}" style="width: 32px; height: 32px;">
             </a>
             <div class="media-body">
-              <span class="label label-info pull-right">just now</span>
+              <span class="label label-info pull-right">{{event.created_at.fromNow()}}</span>
               <h4 class="media-heading">{{event.data.sender.login}}</h4>
               <div ng-include="event.type+'_event.html'">
             </div>
@@ -100,24 +100,13 @@
       <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="" style="width: 32px; height: 32px;">
     </a>
     <div class="media-body">
-      <span class="label label-info pull-right">just now</span>
+      <span class="label label-info pull-right">{{commit.timestamp.fromNow()}}</span>
       <h4 class="media-heading">{{commit.committer.username}}</h4>
-      committed "{{commit.message}}"
+      <strong>committed</strong> {{commit.message.split("\n")[0]}}
     </div>
   </div>
 </script>
 
 <script type="text/ng-template" id="issues_event.html">
   <p><strong>{{event.data.action}}</strong> the issue "{{event.data.issue.title}}" </p>
-  <!-- Nested media object -->
-  <div class="media" ng-repeat="commit in event.data.commits">
-    <a class="pull-left" href="#">
-      <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="" style="width: 32px; height: 32px;">
-    </a>
-    <div class="media-body">
-      <span class="label label-info pull-right">just now</span>
-      <h4 class="media-heading">{{commit.committer.username}}</h4>
-      committed "{{commit.message}}"
-    </div>
-  </div>
 </script>
