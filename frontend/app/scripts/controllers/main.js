@@ -13,7 +13,7 @@ angular.module('frontendApp')
     notifications.checkPermissions();
 
     Restangular.one('sites', 'config').get().then(function(site) {
-      $rootScope.site_name = site.data.name
+      $rootScope.site_name = site.data.name;
     });
 
     $scope.granularities = ['monthly', 'weekly'];
