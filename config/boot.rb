@@ -13,9 +13,6 @@ Bundler.require(:default, RACK_ENV)
 Padrino::Logger::Config[:production][:log_level] = :info
 Padrino::Logger::Config[:production][:stream] = :stdout
 
-## Configure timezone
-Time.zone = ENV['GITGAME_TIMEZONE'] || 'UTC'
-
 # ## Configure your I18n
 #
 # I18n.default_locale = :en
@@ -37,6 +34,7 @@ Time.zone = ENV['GITGAME_TIMEZONE'] || 'UTC'
 ##
 # Add your before (RE)load hooks here
 #
+
 Padrino.before_load do
   Mongoid::Document.send(:include, ActiveModel::MassAssignmentSecurity)
 end
@@ -45,6 +43,8 @@ end
 # Add your after (RE)load hooks here
 #
 Padrino.after_load do
+  timezone = ENV['GITGAME_TIMEZONE'] || 'UTC'
+  Time.zone = timezone
 end
 
 Padrino.load!
