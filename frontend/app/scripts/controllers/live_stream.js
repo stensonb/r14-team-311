@@ -54,7 +54,7 @@ angular.module('frontendApp')
         }
         if (events.length > 0) {
           var e = events[0];
-          timestamp = e.created_at.valueOf()/1000;
+          timestamp = e.created_at.valueOf()/1000.0;
           notifications.raise(e.user_data.login + " has a new event: " + e.type);
         }
         if (!$scope.events) {
