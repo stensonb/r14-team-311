@@ -18,8 +18,10 @@ class User
   def self.find_or_build_from_json(json_data)
     return if json_data.blank?
 
-    user = User.where(gid: json_data["id"]).first || User.new
-    return user if user
+    user = User.where(gid: json_data["id"]).first
+    unless user
+      user = User.new
+    end
 
     user.login = json_data["login"]
     user.gid = json_data["id"]
