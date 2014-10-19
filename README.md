@@ -1,5 +1,14 @@
 # Gamegit
 
+We're trying to make git even more **fun and competitive**. 
+You earn points for doing actions on your repository (like committing, closing issues, reviewing pull requests, etc..) 
+You can see the feed and leaderboards of the project in almost real time.
+
+As a project manager, you can use this tool to give **bonifications to your employees** at the end of the month. It also helps to measure the performance of the team while keeping the motivation up. 
+Another benefit is that it **encourages good practices** like push small commits, reviewing pull requests and closing issues.
+
+**NOTE**  
+The application will be open-source and easy to deploy on heroku, you can find a live demo here: [http://sleepy-shore-3191.herokuapp.com/]()
 
 ## Deploying it on heroku
 
@@ -41,8 +50,21 @@ And finally open it in your browser:
 
 
 
+## Customizing points system
+
+You can easily customize the points awarded by the system:
+
+	heroku config:set COMMIT_POINTS=3 OPENED_ISSUE_POINTS=1 CLOSED_ISSUE_POINTS=5 OPENED_PULL_REQUEST_POINTS=1 CLOSED_PULL_REQUEST_POINTS=6
 
 
+## Roadmap
+
+- Improve UI
+- Badges
+- Levels
+- Add compatibility with trello
+- Implement API
+- User view
 
 
 
