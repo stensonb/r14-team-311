@@ -10,6 +10,10 @@ Gamegit::Api.controller :payload do
     event = GithubEvent.build_from_payload(request.env, payload_body)
 
     if event.save
+      Thread.start do
+        EventProcessor.process_events([event])
+      end
+
       api_response 200
     end
 

@@ -1,7 +1,11 @@
 namespace :events do
   task process: [:environment]  do
-    processor = EventProcessor.new(Event.events_to_process)
-    processor.run
+    EventProcessor.process_events(GithubEvent.events_to_process)
+  end
+
+  task process_old_events: [:environment] do
+    events = GithubEvent.events_to_process.where(:created_at.lt => 10.minutes.ago)
+    EventProcessor.process_events(events)
   end
 
   task reprocess: [:environment] do
@@ -11,8 +15,7 @@ namespace :events do
     Stats.destroy_all
     GithubEvent.all.map{|e| e.send(:assign_user); e.save }
 
-    processor = EventProcessor.new(GithubEvent.events_to_process)
-    processor.run
+    EventProcessor.process_events(GithubEvent.events_to_process)
   end
 end
 

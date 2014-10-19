@@ -5,6 +5,11 @@ class EventProcessor
     pull_request
   ]
 
+  def self.process_events(events)
+    processor = EventProcessor.new(events)
+    processor.run
+  end
+
   def initialize(events)
     @events = events
   end
