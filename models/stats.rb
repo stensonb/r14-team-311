@@ -10,6 +10,7 @@ class Stats
   field :commits, type: Integer, default: 0
   field :opened_pull_requests, type: Integer, default: 0
   field :closed_pull_requests, type: Integer, default: 0
+  field :points, type: Integer, default: 0
 
   attr_accessible :period
 
