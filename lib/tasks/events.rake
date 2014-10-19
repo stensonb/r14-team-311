@@ -6,7 +6,9 @@ namespace :events do
 
   task reprocess: [:environment] do
     Event.update_all(processed: false)
-    User.update_all(points: 0)
+    User.destroy_all
+    Stats.destroy_all
+    Event.all.map{|e| e.send(:assign_user); e.save }
 
     processor = EventProcessor.new(Event.events_to_process)
     processor.run
