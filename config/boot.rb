@@ -13,6 +13,9 @@ Bundler.require(:default, RACK_ENV)
 Padrino::Logger::Config[:production][:log_level] = :info
 Padrino::Logger::Config[:production][:stream] = :stdout
 
+## Configure timezone
+Time.zone = 'UTC'
+
 # ## Configure your I18n
 #
 # I18n.default_locale = :en
