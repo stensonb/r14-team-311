@@ -43,9 +43,7 @@ class Event
 
   private
   def assign_user
-    key = "sender"
-
-    self.user = User.find_or_build_from_json(self.data[key])
+    self.user = User.find_or_build_from_json(self.data["sender"])
   end
 
   def cache_user_data
