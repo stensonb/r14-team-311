@@ -10,6 +10,7 @@ class User
   field :last_activity_at, type: Time
   field :points, type: Integer, default: 0
   field :level, type: Integer, default: 0
+  field :achievements, type: Array, default: []
 
   validates_uniqueness_of :login
 

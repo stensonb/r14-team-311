@@ -1,0 +1,38 @@
+achievements:
+  - name: "Welcome to the party!"
+    id: "welcome"
+    description: "Completed first commit"
+    conditions:
+      commits: 1
+
+  - name: "I'm here to stay"
+    id: "im_here_to_stay"
+    description: "Completed 100 commits"
+    conditions:
+      commits: 100
+
+  - name: "I got a bug!"
+    id: "i_got_a_bug"
+    description: "Opened first issue"
+    conditions:
+      opened_issues: 1
+
+  - name: "The QA Agent"
+    id: "qa_agent"
+    description: "Opened 5 issues"
+    conditions:
+      opened_issues: 5
+
+  - name: "Die! Bug! Die!"
+    id: "die_bug"
+    description: "Closed first issue"
+    conditions:
+      closed_issues: 1
+
+  - name: "The exterminator"
+    id: "exterminator"
+    description: "Closed 5 issues"
+    conditions:
+      closed_issues: 1
+
+
