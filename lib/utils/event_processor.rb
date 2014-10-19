@@ -12,6 +12,7 @@ class EventProcessor
 
   def process_event(event)
     send(:"process_#{event.type}_event", event)
+    event.set(processed: true)
   rescue Exception => e
     Padrino.logger.error "Error processing event: #{event.delivery_id} (#{event.type}): #{e.message}\n\t#{e.backtrace.join("\n\t")}"
   end
