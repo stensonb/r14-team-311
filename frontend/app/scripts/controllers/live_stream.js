@@ -31,9 +31,14 @@ angular.module('frontendApp')
             evnt.data.more_commits = moreCommits;
             evnt.data.head_commits = headCommits;
           }
+          if ($scope.events) {
+            $scope.events.push(evnt);
+          }
         }
         timestamp = events[0].created_at.unix();
-        $scope.events = events;
+        if (!$scope.events) {
+          $scope.events = events;
+        }
         $timeout(tick, 10000);
       });
     })();
