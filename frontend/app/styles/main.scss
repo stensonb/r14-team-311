@@ -7,9 +7,6 @@ body {
   background-color: #f5f7fa;
 }
 
-.main {
-  margin-top: 60px;
-}
 
 .widget {
   margin-bottom: 20px;
@@ -72,4 +69,19 @@ body {
   position: fixed;
   bottom: 1em;
   left: 1em;
+}
+
+.wrapper {
+  margin-top: 60px;
+
+  .main {
+    float: left;
+    width: 80%;
+  }
+
+  .side-live-stream {
+    position: fixed;
+    right: 0;
+    width: 20%;
+  }
 }
