@@ -6,6 +6,7 @@ namespace :events do
 
   task reprocess: [:environment] do
     GithubEvent.update_all(processed: false)
+    SystemEvent.destroy_all
     User.destroy_all
     Stats.destroy_all
     GithubEvent.all.map{|e| e.send(:assign_user); e.save }
