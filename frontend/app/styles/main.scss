@@ -3,12 +3,20 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic);
+
 html, body, .main-ctrl {
   height: 100%;
 }
 
 body {
   background-color: #f5f7fa;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #656565;
+}
+
+h1, h2, h3, h4 {
+  font-weight: bold;
 }
 
 .widget {
@@ -109,7 +117,7 @@ body {
 
   .main {
     float: left;
-    margin-top: 60px;
+    padding-top: 60px;
     width: 80%;
     height: 100%;
     overflow: auto;
@@ -117,14 +125,19 @@ body {
 
   .side-live-stream {
     height: 100%;
-    overflow: scroll;
-    margin-top: 60px;
+    overflow-y: scroll;
     position: fixed;
     right: 0;
     width: 20%;
 
-    .media-list li {
-      border-bottom: 1px solid #DDD;
+    .media-list {
+      background-color: #FFF;
+      margin-top: 51px;
+      padding: 10px;
+
+      li {
+        border-bottom: 1px solid #DDD;
+      }
     }
   }
 }
