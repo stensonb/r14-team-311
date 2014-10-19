@@ -10,12 +10,12 @@ database_name = case Padrino.env
 end
 
 # Use MONGO_URI if it's set as an environmental variable.
-Mongoid::Config.sessions =
-  if ENV['MONGO_URI']
-    {default: {uri: ENV['MONGO_URI'] }}
-  else
-    {default: {hosts: ["#{host}:#{port}"], database: database_name}}
-  end
+mongo_uri = ENV['MONGO_URI'] || ENV['MONGOHQ_URL']
+if mongo_uri
+  Mongoid::Config.sessions = {default: {uri: mongo_uri }}
+else
+  Mongoid::Config.sessions = {default: {hosts: ["#{host}:#{port}"], database: database_name}}
+end
 
 # If you want to use a YML file for config, use this instead:
 #
