@@ -21,11 +21,28 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <div ng-controller="MainCtrl">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">GameGit</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <form class="navbar-form navbar-right" role="form">
+                <div class="btn btn-default" ng-click="openAbout()">
+                  <i class="glyphicon glyphicon-question-sign"></i>
+                </div>
+              </form>
+            </div><!--/.navbar-collapse -->
+          </div>
+        </div>
 
-    <div class="container">
-      <div ui-view></div>
+        <div class="container main">
+          <div ui-view></div>
+        </div>
+
+        <div class="footer"> © 2014 r14-team-311/railsrumble </div>
     </div>
-
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -83,6 +100,7 @@
         <script src="scripts/controllers/ranking.js"></script>
         <script src="scripts/controllers/live_stream.js"></script>
         <script src="scripts/directives/sparklines.js"></script>
+        <script src="scripts/controllers/dashboard.js"></script>
         <!-- endbuild -->
 </body>
 </html>

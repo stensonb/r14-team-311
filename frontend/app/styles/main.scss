@@ -5,7 +5,10 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 body {
   background-color: #f5f7fa;
-  margin-top: 10px;
+}
+
+.main {
+  margin-top: 60px;
 }
 
 .widget {
@@ -63,4 +66,10 @@ body {
 
 .list-group-item {
   border: none;
+}
+
+.footer {
+  position: fixed;
+  bottom: 1em;
+  left: 1em;
 }

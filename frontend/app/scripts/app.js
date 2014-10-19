@@ -26,8 +26,8 @@ angular
     $stateProvider
       .state('dashboard', {
         url: '/',
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardCtrl'
       });
   })
   .config(function(RestangularProvider) {

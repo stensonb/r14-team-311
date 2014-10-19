@@ -1,3 +1,4 @@
+
 <div class="row">
   <div class="col-md-4" ng-controller="StatsCtrl">
     <div class="panel widget">
@@ -52,8 +53,8 @@
         </div>
       </div>
       <div class="list-group">
-        <a href="#" class="list-group-item" ng-repeat="user in reset">
-          <span class="label label-primary pull-right">user.points</span>
+        <a href="#" class="list-group-item" ng-repeat="user in rest">
+          <span class="label label-primary pull-right">{{user.points}}</span>
           <em class="fa fa-fw fa-clock-o text-muted"></em>
           {{user.login}}
         </a>
@@ -62,9 +63,9 @@
   </div>
 
   <div class="col-md-4" ng-controller="LiveStreamCtrl">
-    <div class="panel panel-primary">
+    <div class="panel panel-primary" >
       <div class="panel-heading">Live stream</div>
-      <div class="panel-body">
+      <div class="panel-body" style="max-height: 39em; overflow: auto">
         <ul class="media-list">
           <li class="media" ng-repeat="event in events">
             <a class="pull-left" href="#">
@@ -118,5 +119,10 @@
 <script type="text/ng-template" id="issues_event.html">
   <p><strong>{{event.data.action}}</strong> the issue "{{event.data.issue.title}}" </p>
 </script>
+
+<script type="text/ng-template" id="pull_request_event.html">
+  <p><strong>{{event.data.action}}</strong> the pull request "{{event.data.pull_request.title}}" </p>
+</script>
+
 
 <script type="text/ng-template" id="ping_event.html"></script>
