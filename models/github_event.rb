@@ -8,7 +8,6 @@ class GithubEvent < Event
 
   scope :events_to_process, ->{ where(processed: false) }
 
-  before_create :assign_user
 
   def self.build_from_payload(headers, payload_body)
     event = self.find_or_build_by_delivery_id(headers["HTTP_X_GITHUB_DELIVERY"])
@@ -25,7 +24,7 @@ class GithubEvent < Event
   end
 
   private
-  def assign_user
+  def find_user
     self.user = User.find_or_build_from_json(self.data["sender"])
   end
 
