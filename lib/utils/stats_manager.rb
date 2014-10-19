@@ -1,4 +1,13 @@
 class StatsManager
+  SUPPORTED_PERIODS = %w[
+    monthly
+    weekly
+  ]
+
+  def self.is_period_supported?(period)
+    SUPPORTED_PERIODS.include?(period.to_s)
+  end
+
   def self.process_event(event)
     send(:"increment_#{event.type}_event_stats", event)
   rescue Exception => e
@@ -34,7 +43,9 @@ class StatsManager
   end
 
   def self.increment_stats(date, key, login, count = 1)
-    Stats.stats_for(date).inc(key => count)
-    UserStats.stats_for(login, date).inc(key => count)
+    Stats.stats_for(date, :monthly).inc(key => count)
+    Stats.stats_for(date, :weekly).inc(key => count)
+    UserStats.stats_for(login, date, :monthly).inc(key => count)
+    UserStats.stats_for(login, date, :weekly).inc(key => count)
   end
 end

@@ -15,11 +15,16 @@ class Stats
   attr_accessible :period
 
   def self.period_for_date(date, scope = :monthly)
-    date.strftime("%Y%m")
+    case scope
+    when :monthly
+      date.strftime("monthly-%Y%m")
+    when :weekly
+      date.strftime("weekly-%Y%m%W")
+    end
   end
 
-  def self.stats_for(date)
-    period = period_for_date(date)
+  def self.stats_for(date, scope)
+    period = period_for_date(date, scope)
     find_or_create(period: period)
   end
 
