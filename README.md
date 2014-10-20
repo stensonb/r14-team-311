@@ -1,5 +1,6 @@
 # Gamegit
 
+
 We're trying to make git even more **fun and competitive**. 
 You earn points for doing actions on your repository (like committing, closing issues, reviewing pull requests, etc..) 
 You can see the feed and leaderboards of the project in almost real time.
@@ -8,7 +9,12 @@ As a project manager, you can use this tool to give **bonifications to your empl
 Another benefit is that it **encourages good practices** like push small commits, reviewing pull requests and closing issues.
 
 **NOTE**  
-The application will be open-source and easy to deploy on heroku, you can find a live demo here: [http://sleepy-shore-3191.herokuapp.com/]()
+The application will be open-source and easy to deploy on heroku, you can find a live demo here: [http://sleepy-shore-3191.herokuapp.com/](http://sleepy-shore-3191.herokuapp.com/)
+
+## Rails Rumble
+
+If you like this project, please [vote for us](http://railsrumble.com/entries/311-gamegit).
+
 
 ## Deploying it on heroku
 
