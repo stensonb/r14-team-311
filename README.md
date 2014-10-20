@@ -9,7 +9,7 @@ As a project manager, you can use this tool to give **bonifications to your empl
 Another benefit is that it **encourages good practices** like push small commits, reviewing pull requests and closing issues.
 
 **NOTE**  
-The application will be open-source and easy to deploy on heroku, you can find a live demo here: [http://sleepy-shore-3191.herokuapp.com/](http://sleepy-shore-3191.herokuapp.com/)
+The application will be open-source and easy to deploy on heroku, you can find a live demo here: [http://sleepy-shore-3191.herokuapp.com/]()
 
 ## Rails Rumble
 
@@ -65,8 +65,8 @@ You can easily customize the points awarded by the system:
 
 ## Customizing achievements
 
-Adding new achievements is easy! Just edit the file `config/achievements.yml`.
-The conditions should match the fields listed in the `UserStats` model.
+Adding new achievements is easy! Just edit the file [config/achievements.yml](https://github.com/railsrumble/r14-team-311/blob/master/config/achievements.yml).
+The conditions should match the fields listed in the [UserStats](https://github.com/railsrumble/r14-team-311/blob/master/models/user_stats.rb) model.
 
 
 ## Roadmap
