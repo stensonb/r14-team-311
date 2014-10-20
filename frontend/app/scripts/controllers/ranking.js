@@ -19,22 +19,29 @@ angular.module('frontendApp')
       }
     }
 
-    var icons = {};
-    var labels = {};
+
+    var achievements = {};
     Restangular.one('achievements', 'types').getList().then(function(types) {
       for (var i = 0; i < types.length; i++) {
-        var achievement = types[i];
-        icons[achievement.id] = achievement.image_url;
-        labels[achievement.id] = achievement.name;
+        var a = types[i];
+        achievements[a.id] = {
+          icon: a.image_url,
+          label: a.name,
+          description: a.description
+        };
       }
     });
 
     $scope.getAchievementIcon = function(id) {
-      return icons[id];
+      return (achievements[id]||{}).icon;
     };
 
     $scope.getAchievementLabel = function(id) {
-      return labels[id];
+      return (achievements[id]||{}).label;
+    };
+
+    $scope.getAchievementDescription = function(id) {
+      return (achievements[id]||{}).description;
     };
 
     $rootScope.$watch('g', function () {
