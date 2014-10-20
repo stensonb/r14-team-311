@@ -14,7 +14,7 @@ angular.module('frontendApp')
       for (var i = 0; i < users.length; i++) {
         var user = users[i];
         Restangular.one('user_stats', user.login).getList($rootScope.g).then(function(stats){
-          $scope.stats[stats[0].login] = stats[0];
+          $scope.stats[stats[0].login] = stats[stats.length-1];
         });
       }
     }
