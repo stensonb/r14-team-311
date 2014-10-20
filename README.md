@@ -57,6 +57,12 @@ You can easily customize the points awarded by the system:
 	heroku config:set COMMIT_POINTS=3 OPENED_ISSUE_POINTS=1 CLOSED_ISSUE_POINTS=5 OPENED_PULL_REQUEST_POINTS=1 CLOSED_PULL_REQUEST_POINTS=6
 
 
+## Customizing achievements
+
+Adding new achievements is easy! Just edit the file `config/achievements.yml`.
+The conditions should match the fields listed in the `UserStats` model.
+
+
 ## Roadmap
 
 - Improve UI
