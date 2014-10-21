@@ -20,12 +20,20 @@ angular
     'ui.router',
     'restangular'
   ])
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ( $stateProvider, $urlRouterProvider, $rootScopeProvider) {
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
+      .state('main', {
+        url: '/'
+      })
+      .state('welcome', {
+        url: '/welcome',
+        templateUrl: 'views/welcome.html',
+        controller: 'WelcomeCtrl'
+      })
       .state('dashboard', {
-        url: '/',
+        url: '/dashboard',
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl'
       });

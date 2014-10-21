@@ -8,17 +8,11 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('RankingCtrl', function ($scope, $rootScope, Restangular) {
-    $scope.stats = {};
-    function getUserStats(users) {
-      for (var i = 0; i < users.length; i++) {
-        var user = users[i];
-        Restangular.one('user_stats', user.login).getList($rootScope.g).then(function(stats){
-          $scope.stats[stats[0].login] = stats[stats.length-1];
-        });
-      }
-    }
-
+  .controller('RankingCtrl', function ($scope, $rootScope, Restangular, Users) {
+    Users.fetchUser().then(function() {
+      Users.reloadStats($rootScope.q);
+    });
+    $scope.stats = Users.stats;
 
     var achievements = {};
     Restangular.one('achievements', 'types').getList().then(function(types) {
@@ -43,16 +37,10 @@ angular.module('frontendApp')
     $scope.getAchievementDescription = function(id) {
       return (achievements[id]||{}).description;
     };
+    $scope.users = Users.users();
 
-    $rootScope.$watch('g', function () {
-      if ($scope.users) {
-        getUserStats($scope.users);
-      }
-    });
-
-    Restangular.all('users').getList().then(function(users) {
-      $scope.users = users;
-      getUserStats($scope.users);
+    $rootScope.$watch('g', function (g) {
+      Users.reloadStats(g);
     });
 
     $scope.fromNow = function (date) {
