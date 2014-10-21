@@ -1,5 +1,5 @@
 
-<div ng-controller="RankingCtrl">
+<div ng-controller="RankingCtrl" class="ranking">
   <div class="panel widget panel-primary">
     <div class="panel-heading">Ranking</div>
     <div class="panel-body">
@@ -37,7 +37,9 @@
           <br/>
           <img
             ng-repeat="achievement in user.achievements"
-            title="{{getAchievementLabel(achievement)}}"
+            popover="{{getAchievementDescription(achievement)}}"
+            popover-title="{{getAchievementLabel(achievement)}}"
+            popover-trigger="mouseenter"
             style="margin-right: 5px"
             ng-src="{{getAchievementIcon(achievement)}}"/>
         </td>
