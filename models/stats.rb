@@ -14,6 +14,8 @@ class Stats
 
   attr_accessible :period
 
+  validates_uniqueness_of :period
+
   def self.period_for_date(date, scope = :monthly)
     case scope
     when :monthly

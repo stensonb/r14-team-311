@@ -1,0 +1,15 @@
+{
+  "name": "Gamegit",
+  "description": "Gamification platform for Github",
+  "repository": "https://github.com/railsrumble/r14-team-311",
+  "keywords": ["achievements", "github", "gamification"],
+  "addons": [
+    "mongohq:sandbox"
+  ],
+  "env": {
+    "GAMEGIT_SECRET_TOKEN": {
+      "description": "A secret key for github's webhooks.",
+      "generator": "secret"
+    }
+  }
+}

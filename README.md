@@ -1,5 +1,6 @@
 # Gamegit
 
+
 We're trying to make git even more **fun and competitive**. 
 You earn points for doing actions on your repository (like committing, closing issues, reviewing pull requests, etc..) 
 You can see the feed and leaderboards of the project in almost real time.
@@ -10,8 +11,28 @@ Another benefit is that it **encourages good practices** like push small commits
 **NOTE**  
 The application will be open-source and easy to deploy on heroku, you can find a live demo here: [http://sleepy-shore-3191.herokuapp.com/]()
 
+## Rails Rumble
+
+If you like this project, please [vote for us](http://railsrumble.com/entries/311-gamegit).
+
+
 ## Deploying it on heroku
 
+### Automatically
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/railsrumble/r14-team-311)
+
+Then clone the repository:
+
+	heroku git:clone -a <name-of-the-app>
+
+and get secret key:
+
+	heroku config:get GAMEGIT_SECRET_TOKEN
+
+And see [Adding the webhook to Github](#adding-the-webhook-to-github)
+
+### Manually
 
 Clone the repository:
 
@@ -55,6 +76,12 @@ And finally open it in your browser:
 You can easily customize the points awarded by the system:
 
 	heroku config:set COMMIT_POINTS=3 OPENED_ISSUE_POINTS=1 CLOSED_ISSUE_POINTS=5 OPENED_PULL_REQUEST_POINTS=1 CLOSED_PULL_REQUEST_POINTS=6
+
+
+## Customizing achievements
+
+Adding new achievements is easy! Just edit the file [config/achievements.yml](https://github.com/railsrumble/r14-team-311/blob/master/config/achievements.yml).
+The conditions should match the fields listed in the [UserStats](https://github.com/railsrumble/r14-team-311/blob/master/models/user_stats.rb) model.
 
 
 ## Roadmap
