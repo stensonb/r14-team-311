@@ -30,8 +30,11 @@ angular
         controller: 'DashboardCtrl'
       });
   })
-  .config(function(RestangularProvider) {
-    // RestangularProvider.setBaseUrl('http://localhost:3000/');
+  .config(function(RestangularProvider, serverUrl) {
+    if (serverUrl.length > 0) {
+      RestangularProvider.setBaseUrl(serverUrl);
+    }
+
     RestangularProvider.setRestangularFields({
       id: '_id'
     });

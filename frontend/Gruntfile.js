@@ -360,6 +360,12 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      production: {
+        files: [{
+          dest: '<%= yeoman.dist %>/scripts/config.js',
+          src: 'env/production/config.js',
+        }]
       }
     },
 
@@ -391,6 +397,8 @@ module.exports = function (grunt) {
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
+    } else if (target === 'production') {
+      return grunt.task.run(['production', 'connect:dist:keepalive']);
     }
 
     grunt.task.run([
@@ -425,6 +433,23 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    'usemin',
+    'htmlmin'
+  ]);
+
+  grunt.registerTask('production', [
+    'clean:dist',
+    'wiredep',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngAnnotate',
+    'copy:dist',
+    'copy:production',
     'cdnify',
     'cssmin',
     'uglify',
