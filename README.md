@@ -18,6 +18,21 @@ If you like this project, please [vote for us](http://railsrumble.com/entries/31
 
 ## Deploying it on heroku
 
+### Automatically
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/railsrumble/r14-team-311)
+
+Then clone the repository:
+
+	heroku git:clone -a <name-of-the-app>
+
+and get secret key:
+
+	heroku config:get GAMEGIT_SECRET_TOKEN
+
+And see [Adding the webhook to Github](#adding-the-webhook-to-github)
+
+### Manually
 
 Clone the repository:
 
