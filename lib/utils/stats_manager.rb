@@ -10,7 +10,7 @@ class StatsManager
 
   def self.process_event(event)
     send(:"increment_#{event.type}_event_stats", event)
-  rescue Exception => e
+  rescue => e
     Padrino.logger.warn "Unhandled event type: #{event.type} when incrementing stats: #{e.message}"
   end
 

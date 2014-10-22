@@ -9,7 +9,7 @@ class PointsManager
 
   def self.process_event(event)
     send(:"assign_#{event.type}_event_points", event)
-  rescue Exception => e
+  rescue => e
     Padrino.logger.warn "Unhandled event type: #{event.type} when assigning points: #{e.message}"
   end
 
